@@ -710,6 +710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5b1aa967e90f24cbde1da0fb47bfc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "_3a\xF1os": {fileID: 996828360}
+  "_5a\xF1os": {fileID: 1611268122}
+  "_4a\xF1os": {fileID: 1284882225}
+  _nivelesPanel: {fileID: 263518409}
 --- !u!1 &989458258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1026,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 996828361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977131633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: "TresA\xF1os_Scene"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &996828361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,7 +1293,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1200442028}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977131633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1200442028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,7 +1494,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1284882226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977131633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: "CincoA\xF1os_Scene"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1284882226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,7 +2029,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1611268123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977131633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: "CuatroA\xF1os_Scene"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1611268123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2336,7 +2388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1892010928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977131633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1892010928
 MonoBehaviour:
   m_ObjectHideFlags: 0
