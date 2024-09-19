@@ -44,6 +44,11 @@ public class MenuTresScript : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void BackMenu3()
+    {
+         AllPanelDeactivate();
+        _menuPanel.SetActive(true);
+    }
     public void Quit()
     {
         Application.Quit();
