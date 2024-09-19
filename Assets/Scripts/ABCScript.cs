@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems; // Para manejar eventos de UI como arrastrar
+using UnityEngine.EventSystems;
 using UnityEngine.Audio;
+using TMPro;
 
 public class ABCScript : MonoBehaviour
 {
@@ -16,24 +17,36 @@ public class ABCScript : MonoBehaviour
     private Button letraActual;
     private Vector2 letraPosicionInicial;
     private bool arrastrando = false;
+    private bool colocadoCorrectamente = false; // Bandera para saber si la letra ya está colocada
 
     void Start()
     {
         // Asignar a cada botón su función de arrastre
         foreach (Button letra in _letras)
         {
-            letra.onClick.AddListener(() => IniciarArrastre(letra));
+            EventTrigger trigger = letra.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerDown;
+            entry.callback.AddListener((data) => { IniciarArrastre(letra); });
+            trigger.triggers.Add(entry);
         }
     }
 
     void Update()
     {
-        if (arrastrando)
+        if (arrastrando && Input.touchCount > 0)
         {
-            // Seguir el puntero del mouse mientras se arrastra
-            letraActual.transform.position = Input.mousePosition;
+            Touch touch = Input.GetTouch(0);
 
-            if (Input.GetMouseButtonUp(0)) // Cuando se suelta el botón izquierdo del mouse
+            if (touch.phase == TouchPhase.Moved && !colocadoCorrectamente)
+            {
+                // Seguir el dedo mientras se arrastra
+                letraActual.transform.position = touch.position;
+                Debug.Log("Arrastrando letra: " + letraActual.name);
+            }
+
+            if (touch.phase == TouchPhase.Ended && !colocadoCorrectamente) // Cuando se suelta el dedo
             {
                 arrastrando = false;
                 RevisarPosicion();
@@ -43,40 +56,59 @@ public class ABCScript : MonoBehaviour
 
     private void IniciarArrastre(Button letra)
     {
-        // Comenzar a arrastrar la letra
+        // Comenzar a arrastrar la letra si no está colocada correctamente
+        if (!letra.interactable) return; // No arrastrar si ya está colocada
+
         letraActual = letra;
         letraPosicionInicial = letra.transform.position;
         arrastrando = true;
+        colocadoCorrectamente = false; // Resetear estado de colocación
+        Debug.Log("Iniciando arrastre de letra: " + letraActual.name);
     }
 
     private void RevisarPosicion()
     {
-        bool colocadoCorrectamente = false;
+        GameObject huecoCorrecto = null;
+        colocadoCorrectamente = false;
 
-        // Revisar si la letra fue colocada en el hueco correcto
         foreach (GameObject hueco in _huecos)
         {
-            float distancia = Vector2.Distance(letraActual.transform.position, hueco.transform.position);
+            TextMeshProUGUI huecoTexto = hueco.GetComponentInChildren<TextMeshProUGUI>();
+            string letraTexto = letraActual.GetComponentInChildren<TextMeshProUGUI>().text;
 
-            if (distancia < 50f) // Rango de tolerancia para colocar en el hueco
+            if (letraTexto == huecoTexto.text)
             {
-                // Colocar la letra en el hueco
-                letraActual.transform.position = hueco.transform.position;
-                colocadoCorrectamente = true;
-                break;
+                float distancia = Vector2.Distance(letraActual.transform.position, hueco.transform.position);
+                Debug.Log("Distancia a hueco: " + distancia);
+
+                if (distancia < 50f) // Rango de tolerancia
+                {
+                    huecoCorrecto = hueco;
+                    colocadoCorrectamente = true;
+                    break;
+                }
             }
         }
 
-        // Reproducir el sonido adecuado
         if (colocadoCorrectamente)
         {
+            letraActual.transform.position = huecoCorrecto.transform.position; // Colocar la letra en el hueco
+            huecoCorrecto.GetComponent<Image>().color = Color.green; // Cambiar color del hueco
             audioSource.PlayOneShot(correctoClip);
+            letraActual.interactable = false; // Desactivar el botón para evitar arrastre posterior
+
+            EventTrigger trigger = letraActual.GetComponent<EventTrigger>();
+            if (trigger != null)
+            {
+                trigger.enabled = false; // Desactivar el EventTrigger
+            }
+            Debug.Log("Letra colocada correctamente: " + letraActual.name);
         }
         else
         {
             audioSource.PlayOneShot(incorrectoClip);
-            // Devolver la letra a su posición inicial
-            letraActual.transform.position = letraPosicionInicial;
+            letraActual.transform.position = letraPosicionInicial; // Volver a posición inicial
+            Debug.Log("Letra no colocada correctamente: " + letraActual.name);
         }
     }
 }
