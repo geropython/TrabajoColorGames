@@ -1687,7 +1687,7 @@ GameObject:
   - component: {fileID: 40426072}
   - component: {fileID: 40426071}
   m_Layer: 5
-  m_Name: EjemploA
+  m_Name: EjemploC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6371,7 +6371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8823a8c5cdbfdca4dae074e9fb5d7ac0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6924,7 +6924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b80a0388ee8e742498d068cd547c69fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14220,7 +14220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d866ae466b0e53d49a6bd0d27b5b059c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14756,7 +14756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5b22f004e0daefd4eb72dd32a0a4c85d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18435,7 +18435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 09a4001d7b75c514daca7935c8db3488, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29284,7 +29284,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6c209e9250ae6da43b143ad17d4b34bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30306,7 +30306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752985780}
   m_Layer: 5
-  m_Name: IconoA
+  m_Name: IconoC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31590,7 +31590,7 @@ GameObject:
   - component: {fileID: 793663863}
   - component: {fileID: 793663862}
   m_Layer: 5
-  m_Name: EjemploA
+  m_Name: EjemploC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36923,6 +36923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002333479}
+  - component: {fileID: 1002333480}
   m_Layer: 5
   m_Name: LetrasMay
   m_TagString: Untagged
@@ -36976,6 +36977,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1002333480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002333478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb110b3e8fa5bf740bd3c47ebf567ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelGroups:
+  - button: {fileID: 1824581589}
+    panel: {fileID: 918735056}
+  - button: {fileID: 1866361182}
+    panel: {fileID: 1307292630}
+  - button: {fileID: 197153156}
+    panel: {fileID: 1931054651}
+  - button: {fileID: 776238145}
+    panel: {fileID: 220661109}
+  - button: {fileID: 1227690466}
+    panel: {fileID: 1856533205}
 --- !u!1 &1014107077
 GameObject:
   m_ObjectHideFlags: 0
@@ -37564,15 +37588,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 127159522}
-  - {fileID: 1145753469}
-  - {fileID: 1171081831}
-  - {fileID: 73391037}
+  - {fileID: 1768895420}
   - {fileID: 1920930201}
   - {fileID: 1402498380}
-  - {fileID: 1709085071}
+  - {fileID: 127159522}
   - {fileID: 347197126}
-  - {fileID: 1768895420}
+  - {fileID: 1145753469}
+  - {fileID: 1709085071}
+  - {fileID: 1171081831}
+  - {fileID: 73391037}
   - {fileID: 1909982916}
   m_Father: {fileID: 1682089935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37594,26 +37618,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelGroups:
-  - button1: {fileID: 0}
-    button2: {fileID: 0}
-    panel1: {fileID: 0}
-    panel2: {fileID: 0}
-  - button1: {fileID: 0}
-    button2: {fileID: 0}
-    panel1: {fileID: 0}
-    panel2: {fileID: 0}
-  - button1: {fileID: 0}
-    button2: {fileID: 0}
-    panel1: {fileID: 0}
-    panel2: {fileID: 0}
-  - button1: {fileID: 0}
-    button2: {fileID: 0}
-    panel1: {fileID: 0}
-    panel2: {fileID: 0}
-  - button1: {fileID: 0}
-    button2: {fileID: 0}
-    panel1: {fileID: 0}
-    panel2: {fileID: 0}
+  - button1: {fileID: 469574340}
+    button2: {fileID: 1117984401}
+    panel1: {fileID: 1768895419}
+    panel2: {fileID: 1920930200}
+  - button1: {fileID: 1989920947}
+    button2: {fileID: 1275580362}
+    panel1: {fileID: 1402498379}
+    panel2: {fileID: 127159521}
+  - button1: {fileID: 273497348}
+    button2: {fileID: 1807933861}
+    panel1: {fileID: 347197125}
+    panel2: {fileID: 1145753468}
+  - button1: {fileID: 1657346975}
+    button2: {fileID: 715975542}
+    panel1: {fileID: 1709085070}
+    panel2: {fileID: 1171081830}
+  - button1: {fileID: 1196617541}
+    button2: {fileID: 1670163797}
+    panel1: {fileID: 1909982915}
+    panel2: {fileID: 73391036}
 --- !u!1 &1040564707
 GameObject:
   m_ObjectHideFlags: 0
@@ -40529,7 +40553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 818858e26ecc56c41a792668379f1367, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -51791,7 +51815,7 @@ GameObject:
   - component: {fileID: 1409292009}
   - component: {fileID: 1409292008}
   m_Layer: 5
-  m_Name: EjemploA
+  m_Name: EjemploB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59800,7 +59824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1607990113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60972,7 +60996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1659252618}
   m_Layer: 5
-  m_Name: IconoA
+  m_Name: IconoC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62748,30 +62772,12 @@ MonoBehaviour:
   - {fileID: 1234085270}
   - {fileID: 1510621441}
   - {fileID: 1540052961}
-  _MayusCardPanels:
-  - {fileID: 918735056}
-  - {fileID: 1307292630}
-  - {fileID: 1931054651}
-  - {fileID: 220661109}
-  - {fileID: 1856533205}
-  _MinCardPanels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _settings: {fileID: 147347676}
   _mayus_min: {fileID: 591530705}
   _sound: {fileID: 1812404589}
   _music: {fileID: 473092432}
-  _settingsPanel: {fileID: 1855090776}
-  _menu3Panel: {fileID: 1471292698}
-  _objetoLetrasMin: {fileID: 235640731}
-  _objetoLetrasMay: {fileID: 1002333478}
   _backgroundMusic: {fileID: 1682089939}
   _buttonSound: {fileID: 1682089938}
-  _normalAudio: {fileID: 0}
-  _slowAudio: {fileID: 0}
 --- !u!1 &1682350718
 GameObject:
   m_ObjectHideFlags: 0
@@ -64981,7 +64987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0a61f6bcdb71ddb4f89f361c95de402c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -65399,7 +65405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1760300491}
   m_Layer: 5
-  m_Name: IconoA
+  m_Name: IconoB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69053,7 +69059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 178ea296efa367543b69ba5fece4024e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
