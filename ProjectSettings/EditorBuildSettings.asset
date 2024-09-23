@@ -7,15 +7,15 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: bd2e794b49dc56a4d9471c14e2625d89
+    guid: 240090c27f023df4d89143468d0431e7
   - enabled: 1
-    path: "Assets/Scenes/3 A\xF1os.unity"
-    guid: 0e90818edd6d8c547a0132046ee14541
+    path: Assets/Scenes/Abecedario.unity
+    guid: b7cb2f80d1d97854f91223cf93bbc742
   - enabled: 1
-    path: "Assets/Scenes/4 A\xF1os.unity"
-    guid: db217544ea481604c9256da257849fed
+    path: Assets/Scenes/Trazado.unity
+    guid: 37b36b9767f69f445aa01f6bf5036a4a
   - enabled: 1
-    path: "Assets/Scenes/5 A\xF1os.unity"
-    guid: aabbf2b8451090246916849d14bfc860
+    path: Assets/Scenes/Arrastre.unity
+    guid: de197f1c53eb23d458aa1067ef039338
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 9d3f068215b689a47906d7e0756954d9, type: 2}

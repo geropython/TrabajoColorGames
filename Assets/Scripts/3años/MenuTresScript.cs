@@ -6,48 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuTresScript : MonoBehaviour
 {
-   [SerializeField] private GameObject _abcPanel, _trazadoPanel, _palabraPanel, _menuPanel;
-
-   void Start()
-   {
-        AllPanelDeactivate();
-        _menuPanel.SetActive(true);
-   }
-   void AllPanelDeactivate()
+    public void Abecedario()
     {
-        _abcPanel.SetActive(false);
-        _trazadoPanel.SetActive(false);
-        _palabraPanel.SetActive(false);
+        SceneManager.LoadScene("Abecedario");
     }
-    public void OpenABC()
+    public void Trazado()
     {
-        _abcPanel.SetActive(true);
-        _trazadoPanel.SetActive(false);
-        _palabraPanel.SetActive(false);
-        _menuPanel.SetActive(false);
+        SceneManager.LoadScene("Trazado");
     }
-    public void OpenTrazado()
+    public void Arrastre()
     {
-        _abcPanel.SetActive(false);
-        _trazadoPanel.SetActive(true);
-        _palabraPanel.SetActive(false);
-        _menuPanel.SetActive(false);
-    }
-    public void OpenPalabra()
-    {
-        _abcPanel.SetActive(false);
-        _trazadoPanel.SetActive(false);
-        _palabraPanel.SetActive(true);
-        _menuPanel.SetActive(false);
+        SceneManager.LoadScene("Arrastre");
     }
     public void BackMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-    public void BackMenu3()
-    {
-         AllPanelDeactivate();
-        _menuPanel.SetActive(true);
     }
     public void Quit()
     {

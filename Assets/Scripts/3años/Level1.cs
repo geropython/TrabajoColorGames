@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Level1 : MonoBehaviour
 {
-    [SerializeField] private Button[] _letrasMay; //_letrasMin
-    [SerializeField] private GameObject[] _MayusCardPanels;// _MinCardPanels
+    [SerializeField] private Button[] _letrasMay, _letrasMin;
+    [SerializeField] private GameObject[] _MayusCardPanels, _MinCardPanels; 
     [SerializeField] private Button _settings, _mayus_min, _sound, _music;
-    [SerializeField] private GameObject _settingsPanel, _menu3Panel,  _objetoLetrasMin, _objetoLetrasMay;
+    [SerializeField] private GameObject _settingsPanel, _objetoLetrasMin, _objetoLetrasMay;
     [SerializeField] private AudioSource _backgroundMusic; // La música de fondo
     private Vector3 originalSize; // Tamaño original de los botones de letras
     private bool isMusicOn = true; // Estado de la música
@@ -32,10 +32,10 @@ public class Level1 : MonoBehaviour
         {
             originalSize = _letrasMay[0].transform.localScale;
         }
-        //  if (_letrasMin.Length > 0)
-        // {
-        //     originalSize = _letrasMin[0].transform.localScale;
-        // }
+         if (_letrasMin.Length > 0)
+        {
+            originalSize = _letrasMin[0].transform.localScale;
+        }
 
         // Asignamos el evento onClick a cada botón de letra
         for (int i = 0; i < _letrasMay.Length; i++)
@@ -43,11 +43,11 @@ public class Level1 : MonoBehaviour
             int index = i;
             _letrasMay[i].onClick.AddListener(() => OnLetterClick(index));
         }
-        //  for (int i = 0; i < _letrasMin.Length; i++)
-        // {
-        //     int index = i;
-        //     _letrasMin[i].onClick.AddListener(() => OnLetterClick(index));
-        // }
+         for (int i = 0; i < _letrasMin.Length; i++)
+        {
+            int index = i;
+            _letrasMin[i].onClick.AddListener(() => OnLetterClick(index));
+        }
 
         // Ocultamos todos los cardPanels al inicio
         HideAllMayusCardPanels();
@@ -59,14 +59,14 @@ public class Level1 : MonoBehaviour
 
         // Agranda el botón presionado
         _letrasMay[index].transform.localScale = enlargedSize;
-        // _letrasMin[index].transform.localScale = enlargedSize;
+        _letrasMin[index].transform.localScale = enlargedSize;
 
         // Muestra el panel correspondiente
         HideAllMayusCardPanels();
-        // HideAllMinCardPanels();
+        HideAllMinCardPanels();
         
         _MayusCardPanels[index].SetActive(true);
-        // _MinCardPanels[index].SetActive(true);
+        _MinCardPanels[index].SetActive(true);
     }
 
     // Oculta todos los cardPanels
@@ -78,13 +78,13 @@ public class Level1 : MonoBehaviour
         }
         
     }
-    // private void HideAllMinCardPanels()
-    // {
-    //      foreach (GameObject panel in _MinCardPanels)
-    //     {
-    //         panel.SetActive(false);
-    //     }
-    // }
+    private void HideAllMinCardPanels()
+    {
+        foreach (GameObject panel in _MinCardPanels)
+        {
+            panel.SetActive(false);
+        }
+    }
 
     // Restaura el tamaño original de todos los botones de letras
     private void ResetButtonSizes()
@@ -93,10 +93,10 @@ public class Level1 : MonoBehaviour
         {
             letra.transform.localScale = originalSize;
         }
-        //  foreach (Button letra in _letrasMin)
-        // {
-        //     letra.transform.localScale = originalSize;
-        // }
+         foreach (Button letra in _letrasMin)
+        {
+            letra.transform.localScale = originalSize;
+        }
     }
 
     // Método para manejar el clic en el botón de música
@@ -144,11 +144,11 @@ public class Level1 : MonoBehaviour
     }
     public void ToggleLetters()
     {
-        // bool areMinLettersActive = _objetoLetrasMin.activeSelf;
+        bool areMinLettersActive = _objetoLetrasMin.activeSelf;
         bool areMayLettersActive = _objetoLetrasMay.activeSelf;
 
         // Cambiar el estado a su opuesto
-        // _objetoLetrasMin.SetActive(!areMinLettersActive);
+        _objetoLetrasMin.SetActive(!areMinLettersActive);
         _objetoLetrasMay.SetActive(!areMayLettersActive);
     }
 }
