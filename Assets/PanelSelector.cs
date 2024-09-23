@@ -9,18 +9,23 @@ public class PanelSelector : MonoBehaviour
     {
         public Button button;     // Un solo botón
         public GameObject panel;  // Panel correspondiente
+        public AudioSource buttonAudioSource; // El AudioSource asociado al botón
     }
 
     public PanelGroup[] panelGroups;  // Array de pares de botones/paneles
 
     void Start()
     {
-        // Asignar el listener de cada botón a su respectivo panel
+        // Asignar el listener de cada botón a su respectivo panel y sonido
         foreach (PanelGroup group in panelGroups)
         {
             if (group.button != null)
             {
-                group.button.onClick.AddListener(() => ShowPanel(group));
+                // Llamamos a ShowPanel y reproducimos el sonido del botón
+                group.button.onClick.AddListener(() => {
+                    ShowPanel(group); 
+                    PlayButtonSound(group.buttonAudioSource);
+                });
             }
         }
     }
@@ -36,5 +41,14 @@ public class PanelSelector : MonoBehaviour
 
         // Activar solo el panel del grupo seleccionado
         selectedGroup.panel.SetActive(true);
+    }
+
+    // Función para reproducir el sonido del botón
+    void PlayButtonSound(AudioSource audioSource)
+    {
+        if (audioSource != null && audioSource.clip != null)
+        {
+            audioSource.Play();
+        }
     }
 }
