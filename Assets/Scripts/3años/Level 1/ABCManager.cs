@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class ABCManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _settingsPanel;
     public bool isPanelActive = false;
    [System.Serializable]
     public class PanelGroup
@@ -49,9 +48,9 @@ public class ABCManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    public void ToggleSettings()
-    {
-        isPanelActive = !isPanelActive; // Cambia el estado (true -> false, false -> true)
-        _settingsPanel.SetActive(isPanelActive); // Activa o desactiva el panel según el estado
-    }
+    // public void ToggleSettings()
+    // {
+    //     isPanelActive = !isPanelActive; // Cambia el estado (true -> false, false -> true)
+    //     _settingsPanel.SetActive(isPanelActive); // Activa o desactiva el panel según el estado
+    // }
 }
