@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TrazadoManager : MonoBehaviour
 {
@@ -44,10 +46,14 @@ public class TrazadoManager : MonoBehaviour
         _minusPanel.SetActive(true);
         _mainPanel.SetActive(false);
     }
-     public void ToggleSettings()
+    public void ToggleSettings()
     {
         isPanelActive = !isPanelActive; // Cambia el estado (true -> false, false -> true)
         _settingsPanel.SetActive(isPanelActive); // Activa o desactiva el panel según el estado
+    }
+    public void BackMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
     
     #endregion Panels
