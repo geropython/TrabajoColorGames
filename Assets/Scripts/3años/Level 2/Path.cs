@@ -27,7 +27,7 @@ public class Path
     public int NumPoints => points.Count;
 
     // Propiedad que calcula y devuelve el número de segmentos en el camino. Un segmento inicial tiene 4 puntos, y cada nuevo segmento añade 3 puntos más (1 ancla y 2 de control).
-    public int NumSegments => (points.Count - 4) / 3 + 1;
+    public int NumSegments => points.Count < 4 ? 0 : (points.Count - 4) / 3 + 1;
 
     // Método que añade un nuevo punto ancla (anchorPos) al final de la lista de puntos, creando un nuevo segmento.
     public void AddSegment(Vector2 anchorPos)
@@ -36,13 +36,17 @@ public class Path
     }
 
     // Método que devuelve un array de 3 puntos que pertenecen a un segmento específico 'i'.
-    public Vector2[] GetpointsInSegment(int i) => new Vector2[] 
-    { 
-        points[i * 3],
-        points[i * 3 + 1], 
-        points[i * 3 + 2], 
-        points[i * 3]
-    };
+    public Vector2[] GetpointsInSegment(int i)
+    {
+        if (i < 0 || i >= NumSegments) return null;
+        return new Vector2[] 
+        { 
+            points[i * 3],
+            points[i * 3 + 1], 
+            points[i * 3 + 2], 
+            points[i * 3]
+        };
+    }
 
     // Método para mover un punto específico de la lista. Toma el índice 'i' del punto y su nueva posición 'pos'.
     public void MovePoint(int i, Vector2 pos)
