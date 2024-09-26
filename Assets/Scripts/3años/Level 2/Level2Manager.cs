@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class TrazadoManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _mayusPanel, _minusPanel, _mainPanel, _selectPanel, _settingsPanel;
-    private bool isPanelActive = false; 
+    [SerializeField] private GameObject _mayusPanel, _minusPanel, _mainPanel, _selectPanel;
+    private bool isPanelActive = false;
+    private bool isMusicOn = true;
+    [SerializeField] private AudioSource _audio;
 
     void Start()
     {
@@ -46,14 +48,23 @@ public class TrazadoManager : MonoBehaviour
         _minusPanel.SetActive(true);
         _mainPanel.SetActive(false);
     }
-    public void ToggleSettings()
-    {
-        isPanelActive = !isPanelActive; // Cambia el estado (true -> false, false -> true)
-        _settingsPanel.SetActive(isPanelActive); // Activa o desactiva el panel según el estado
-    }
     public void BackMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+    public void ToggleMusic()
+    {
+        // Si la música está encendida, la apagamos; si está apagada, la encendemos
+        isMusicOn = !isMusicOn;
+
+        if (isMusicOn)
+        {
+            _audio.Play();
+        }
+        else
+        {
+            _audio.Pause();
+        }
     }
     
     #endregion Panels

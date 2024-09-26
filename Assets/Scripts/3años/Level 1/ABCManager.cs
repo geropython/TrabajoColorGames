@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class ABCManager : MonoBehaviour
 {
     public bool isPanelActive = false;
+    private bool isMusicOn = true;
+    [SerializeField]private AudioSource musicSource; 
    [System.Serializable]
     public class PanelGroup
     {
@@ -48,9 +50,18 @@ public class ABCManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    // public void ToggleSettings()
-    // {
-    //     isPanelActive = !isPanelActive; // Cambia el estado (true -> false, false -> true)
-    //     _settingsPanel.SetActive(isPanelActive); // Activa o desactiva el panel según el estado
-    // }
+    public void ToggleMusic()
+    {
+        // Si la música está encendida, la apagamos; si está apagada, la encendemos
+        isMusicOn = !isMusicOn;
+
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Pause();
+        }
+    }
 }
