@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic; // Usando Visual Scripting para posibles integraciones de lógica visual.
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 
@@ -17,9 +17,13 @@ public class PathDrawer : MonoBehaviour
             myLineRenderer.material = new Material(Shader.Find("Sprites/Default")); // Asegúrate de que tenga un material.
             myLineRenderer.startColor = Color.red; // Define el color de inicio.
             myLineRenderer.endColor = Color.red; // Define el color de fin.
+
+            // Ajusta el grosor del punto al inicio y al final
+            myLineRenderer.startWidth = 1000f; // Grosor de inicio.
+            myLineRenderer.endWidth = 1000f;   // Grosor de fin.
         }
 
-        myLineRenderer.widthMultiplier = 0.2f;
+        // Ya no necesitas usar widthMultiplier porque ahora estás usando startWidth y endWidth
         path = new Path(transform.position);
     }
 
@@ -30,7 +34,7 @@ public class PathDrawer : MonoBehaviour
         if (myLineRenderer == null)
         {
             Debug.LogError("LineRenderer no está inicializado. Asegúrate de llamar a CreatePath() primero.");
-            return; // Sale del método si myLineRenderer no está inicializado.
+            return;
         }
 
         // Establece el número de posiciones en el LineRenderer basado en la cantidad de puntos.
