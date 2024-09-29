@@ -1,222 +1,190 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Linq;
-using System.Collections.Generic;
 
 public class Level2Manager : MonoBehaviour
 {
-    [SerializeField] private Button[] letrasBotones;
-    [SerializeField] private Button[] dibujosBotones;
+    #region Variables
+    public TextMeshProUGUI letraText; // Texto donde se muestra la letra correcta
+    public Button[] botones; // Array de botones para letras
+    [SerializeField] private GameObject _objetoPoints;
     [SerializeField] private GameObject _panelPuntaje;
-    [SerializeField] private int cantidadALetrasSeleccionar = 4; // Cantidad de letras a seleccionar
-    [SerializeField] private int cantidadDibujosSeleccionar = 4; // Cantidad de letras a seleccionar
-    [SerializeField] private AudioClip correctoClip;
-    [SerializeField] private AudioClip incorrectoClip; 
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioSource musicSource;
+
+    private int puntajeTotal = 0; // Puntaje total del jugador
+    private int aciertos = 0; // Contador de aciertos
+    private int errores = 0;  // Contador de errores
+    private char letraCorrecta; // Letra correcta seleccionada
+
+    [SerializeField] private GameObject soundObject; 
+    [SerializeField] private AudioClip correctSound;
+    [SerializeField] private AudioClip incorrectSound;
+    private AudioSource audioSource;
+    public AudioSource musicSource; 
     private bool isMusicOn = true;
 
-    private Button[] letrasSeleccionadas;
-    private Button[] DibujosSeleccionados;
-    private Button letraSeleccionada;
-    private Button dibujoSeleccionado;
-
-    private int puntajeTotal = 0; // Variable para llevar el puntaje total
-    private int aciertos = 0; // Contador de aciertos
-    private GameObject panelPuntaje; // Panel de puntaje
-
-    private Dictionary<string, List<string>> letraImagenDict = new Dictionary<string, List<string>>()
+    // Diccionario que asocia letras a palabras y dibujos
+    private Dictionary<char, string> letrasPalabras = new Dictionary<char, string>()
     {
-        { "A", new List<string> { "Arbol", "Avion" } },
-        { "B", new List<string> { "Barco","Ballena" } },
-        { "C", new List<string> { "Camion", "Caballo" } },
-        { "D", new List<string> { "Dado", "Delfin" } },
-        { "E", new List<string> { "Estrella","Elefante" } },
-        // Agrega más letras e imágenes aquí
+        { 'A', "Avión" },
+        { 'B', "Barco" },
+        { 'C', "Camión" },
+        { 'D', "Delfín" }
     };
+
+    // Lista de los sprites asociados a cada letra
+    public Sprite[] dibujos; // Arrastra tus imágenes aquí en el inspector
+
+    #endregion
 
     void Start()
     {
         _panelPuntaje.SetActive(false);
-        letrasSeleccionadas = SeleccionarBotonesAleatorios(letrasBotones, cantidadALetrasSeleccionar);
-        ColocarBotonesEnCuadrado(letrasSeleccionadas, new Vector2(0, 0), 100f);
-        
-        // Activar y asignar listeners a los botones de letras
-        foreach (Button letra in letrasSeleccionadas)
-        {
-            letra.gameObject.SetActive(true); // Activar los botones seleccionados
-            letra.onClick.AddListener(() => SeleccionarBoton(letra, true));
-        }
-
-        // Colocar botones de dibujo en el cuadrado, seleccionando solo los correspondientes a las letras elegidas
-        ColocarBotonesDibujos();
+        audioSource = soundObject.GetComponent<AudioSource>();
+        AsignarLetrasABotones(); // Inicializa el juego
     }
 
-    void ColocarBotonesDibujos()
+    void AsignarLetrasABotones()
     {
-        List<Button> dibujosSeleccionados = new List<Button>();
+        // Seleccionar una letra correcta aleatoriamente de las disponibles
+        List<char> letrasDisponibles = new List<char>(letrasPalabras.Keys);
+        letraCorrecta = letrasDisponibles[Random.Range(0, letrasDisponibles.Count)];
+        letraText.text = letraCorrecta.ToString(); // Mostrar la letra en pantalla
 
-        foreach (Button letra in letrasSeleccionadas)
-        {
-            string letraTexto = letra.GetComponentInChildren<TextMeshProUGUI>().text;
+        // Crear una lista temporal de letras para los botones
+        List<char> letrasBotones = new List<char>(letrasDisponibles);
+        letrasBotones.Remove(letraCorrecta); // Quitar la letra correcta
 
-            if (letraImagenDict.ContainsKey(letraTexto))
-            {
-                List<string> imagenesCoincidentes = letraImagenDict[letraTexto];
-                
-                // Escoger un dibujo aleatorio de la lista de imágenes
-                string dibujoTexto = imagenesCoincidentes[Random.Range(0, imagenesCoincidentes.Count)];
-
-                // Buscar el botón de dibujo correspondiente
-                Button dibujoSeleccionado = dibujosBotones.FirstOrDefault(d => d.GetComponentInChildren<TextMeshProUGUI>().text == dibujoTexto);
-                if (dibujoSeleccionado != null)
-                {
-                    dibujosSeleccionados.Add(dibujoSeleccionado);
-                }
-            }
-        }
-
-        // Comprobar si todos los botones de dibujos seleccionados son válidos
-        if (dibujosSeleccionados.Count > 0)
-        {
-            ColocarBotonesEnCuadrado(dibujosSeleccionados.ToArray(), new Vector2(0, -300f), 100f);
-            // Activar y asignar listeners a los botones de dibujos
-            foreach (Button dibujo in dibujosSeleccionados)
-            {
-                dibujo.gameObject.SetActive(true); // Activar los botones seleccionados
-                dibujo.onClick.AddListener(() => SeleccionarBoton(dibujo, false));
-            }
-        }
-        else
-        {
-            Debug.LogError("No se encontraron botones de dibujo correspondientes a las letras seleccionadas.");
-        }
-    }
-
-    void ColocarBotonesEnCuadrado(Button[] botones, Vector2 centro, float distancia)
-    {
-        // Coordenadas relativas para formar un cuadrado
-        Vector2[] posiciones = new Vector2[] {
-            new Vector2(-distancia, distancia), 
-            new Vector2(distancia, distancia),   
-            new Vector2(-distancia, -distancia), 
-            new Vector2(distancia, -distancia)  
-        };
+        // Mezclar las letras y elegir un botón para la letra correcta
+        letrasBotones = MezclarLista(letrasBotones);
+        int botonCorrecto = Random.Range(0, botones.Length); // Elegir un botón aleatoriamente para la letra correcta
 
         for (int i = 0; i < botones.Length; i++)
         {
-            // Asignar la posición
-            RectTransform botonTransform = botones[i].GetComponent<RectTransform>();
-            botonTransform.anchoredPosition = centro + posiciones[i];
-        }
-    }
-
-    // Función para seleccionar botones aleatorios de un array
-    private Button[] SeleccionarBotonesAleatorios(Button[] botones, int cantidad)
-    {
-        List<Button> botonesDisponibles = new List<Button>(botones);
-        List<Button> seleccionados = new List<Button>();
-
-        for (int i = 0; i < cantidad; i++)
-        {
-            int indiceAleatorio = Random.Range(0, botonesDisponibles.Count);
-            seleccionados.Add(botonesDisponibles[indiceAleatorio]);
-            botonesDisponibles.RemoveAt(indiceAleatorio);
-        }
-
-        return seleccionados.ToArray();
-    }
-
-    private void SeleccionarBoton(Button boton, bool esLetra)
-    {
-        AudioSource botonAudioSource = boton.GetComponent<AudioSource>();
-
-        if (botonAudioSource != null)
-        {
-            botonAudioSource.Play();
-        }
-
-        if (esLetra)
-        {
-            letraSeleccionada = boton;
-            Debug.Log("Letra seleccionada: " + letraSeleccionada.name);
-        }
-        else
-        {
-            dibujoSeleccionado = boton;
-            Debug.Log("Dibujo seleccionado: " + dibujoSeleccionado.name);
-        }
-
-        if (letraSeleccionada != null && dibujoSeleccionado != null)
-        {
-            VerificarCoincidencia();
-        }
-    }
-
-    private void VerificarCoincidencia()
-    {
-        string letraTexto = letraSeleccionada.GetComponentInChildren<TextMeshProUGUI>().text;
-        string dibujoTexto = dibujoSeleccionado.GetComponentInChildren<TextMeshProUGUI>().text;
-
-        if (letraImagenDict.ContainsKey(letraTexto) && letraImagenDict[letraTexto].Contains(dibujoTexto))
-        {
-            // Coincidencia correcta
-            audioSource.PlayOneShot(correctoClip);
-            Debug.Log("Coincidencia correcta entre: " + letraTexto + " y " + dibujoTexto);
-            
-            letraSeleccionada.interactable = false;
-            dibujoSeleccionado.interactable = false;
-
-            // Sumar puntaje
-            puntajeTotal += 10;
-            aciertos++;
-
-            // Verificar si se han acertado todas las letras
-            if (aciertos >= cantidadALetrasSeleccionar)
+            if (i == botonCorrecto)
             {
-                MostrarPanelPuntaje();
+                // Asignar la palabra correcta al botón (por ejemplo, "Avión")
+                botones[i].GetComponentInChildren<TextMeshProUGUI>().text = letrasPalabras[letraCorrecta]; // Mostrar el nombre de la palabra
+                botones[i].onClick.RemoveAllListeners();
+                botones[i].onClick.AddListener(() => BotonCorrecto(letraCorrecta)); // Pasar la letra correcta
+
+                // Cambiar el sprite correspondiente a la letra correcta
+                botones[i].GetComponent<Image>().sprite = GetSpriteForLetter(letraCorrecta);
+            }
+            else
+            {
+                // Asignar una letra incorrecta aleatoria
+                char letraIncorrecta = letrasBotones[i % letrasBotones.Count]; // Asegurarse de no exceder el tamaño de la lista
+                botones[i].GetComponentInChildren<TextMeshProUGUI>().text = letrasPalabras[letraIncorrecta]; // Mostrar el nombre de la palabra
+                botones[i].onClick.RemoveAllListeners();
+                botones[i].onClick.AddListener(() => BotonIncorrecto());
+
+                // Cambiar el sprite correspondiente a la letra incorrecta
+                botones[i].GetComponent<Image>().sprite = GetSpriteForLetter(letraIncorrecta);
             }
         }
-        else
-        {
-            // Coincidencia incorrecta
-            audioSource.PlayOneShot(incorrectoClip);
-            Debug.Log("Coincidencia incorrecta entre: " + letraTexto + " y " + dibujoTexto);
-        }
+    }
 
-        // Resetear las selecciones
-        letraSeleccionada = null;
-        dibujoSeleccionado = null;
+    private Sprite GetSpriteForLetter(char letra)
+    {
+        switch (letra)
+        {
+            case 'A': return dibujos[0]; // Avión
+            case 'B': return dibujos[1]; // Barco
+            case 'C': return dibujos[2]; // Camión
+            case 'D': return dibujos[3]; // Delfín
+            default: return null; // Retornar null si no se encuentra la letra
+        }
     }
 
     private void MostrarPanelPuntaje()
     {
-        // Activa el panel de puntaje
         _panelPuntaje.SetActive(true);
+        TextMeshProUGUI[] textosPanel = _panelPuntaje.GetComponentsInChildren<TextMeshProUGUI>();
 
-        // Busca el componente TextMeshProUGUI dentro del panel para actualizar el puntaje
-        TextMeshProUGUI puntajeTexto = _panelPuntaje.GetComponentInChildren<TextMeshProUGUI>();
-
-        if (puntajeTexto != null)
+        if (textosPanel.Length >= 2)
         {
-            // Actualiza el puntaje total en el panel de puntaje
-            puntajeTexto.text = "Puntaje Total: " + puntajeTotal.ToString();
+            textosPanel[0].text = "Puntaje Total: " + puntajeTotal.ToString();
+            textosPanel[1].text = "Errores: " + errores.ToString();
         }
         else
         {
-            Debug.LogError("No se encontró el TextMeshProUGUI en el panel de puntaje.");
+            Debug.LogError("No se encontraron suficientes TextMeshProUGUI en el panel de puntaje.");
         }
     }
 
+    #region Botones
+    void BotonCorrecto(char letra)
+    {
+        if (letra == letraCorrecta) // Verificar que la letra corresponde
+        {
+            puntajeTotal += 10; // Sumar puntaje y aciertos
+            aciertos++;
+
+            if (aciertos >= 5) // Cambiado a 5 para finalizar el juego
+            {
+                MostrarPanelPuntaje();
+                DesactivarBotones(); // Desactiva los botones
+            }
+            else
+            {
+                StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
+                audioSource.PlayOneShot(correctSound);
+                AsignarLetrasABotones(); // Reiniciar letras y botones
+            }
+        }
+    }
+
+    void BotonIncorrecto()
+    {
+        errores++; // Incrementar errores
+        Debug.Log("Incorrecto, intenta de nuevo.");
+        audioSource.PlayOneShot(incorrectSound);
+    }
+
+    private void DesactivarBotones()
+    {
+        foreach (Button boton in botones)
+        {
+            boton.interactable = false; // Desactivar todos los botones
+        }
+    }
+    #endregion
+
+    private IEnumerator MostrarObjetoTemporalmente(GameObject objeto, float duracion)
+    {
+        objeto.SetActive(true);
+        yield return new WaitForSeconds(duracion);
+        objeto.SetActive(false);
+    }
+
+    List<char> MezclarLista(List<char> lista)
+    {
+        for (int i = 0; i < lista.Count; i++)
+        {
+            int rand = Random.Range(i, lista.Count);
+            char temp = lista[i];
+            lista[i] = lista[rand];
+            lista[rand] = temp;
+        }
+        return lista;
+    }
+
     public void BackMenu() { SceneManager.LoadScene("MainMenu"); }
-    public void Replay() { SceneManager.LoadScene("Nivel 2"); }
+    public void Replay() { SceneManager.LoadScene("Level 2"); }
+
     public void ToggleMusic()
     {
         isMusicOn = !isMusicOn;
-        if (isMusicOn){ musicSource.Play(); }
-        else {musicSource.Pause(); }
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Pause();
+        }
     }
 }

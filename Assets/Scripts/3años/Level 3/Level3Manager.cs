@@ -10,7 +10,14 @@ public class Level3Manager : MonoBehaviour
     // Referencias
     public TextMeshProUGUI letraText;
     public Button[] botones;
+    [SerializeField] private GameObject _objetoPoints;
+    [SerializeField] private GameObject _panelPuntaje;
+
+    private int puntajeTotal = 0; // Variable para llevar el puntaje total
+    private int aciertos = 0; // Contador de aciertos
+    private int errores = 0;  // Contador de errores
     private char letraCorrecta;
+
     [SerializeField]private GameObject soundObject; 
     [SerializeField]private AudioClip correctSound;
     [SerializeField]private AudioClip incorrectSound;
@@ -21,6 +28,8 @@ public class Level3Manager : MonoBehaviour
 
     void Start()
     {
+        _panelPuntaje.SetActive(false);
+
         // Inicializa la lista de letras de la A a la Z
         for (char c = 'A'; c <= 'Z'; c++)
         {
@@ -66,19 +75,81 @@ public class Level3Manager : MonoBehaviour
         }
     }
 
+    private void MostrarPanelPuntaje()
+    {
+        // Activa el panel de puntaje
+        _panelPuntaje.SetActive(true);
+
+        // Busca los componentes TextMeshProUGUI dentro del panel para actualizar el puntaje y errores
+        TextMeshProUGUI[] textosPanel = _panelPuntaje.GetComponentsInChildren<TextMeshProUGUI>();
+
+        if (textosPanel.Length >= 2)
+        {
+            // Actualiza el puntaje total y los errores en el panel de puntaje
+            textosPanel[0].text = "Puntaje Total: " + puntajeTotal.ToString();
+            textosPanel[1].text = "Errores: " + errores.ToString();
+        }
+        else
+        {
+            Debug.LogError("No se encontraron suficientes TextMeshProUGUI en el panel de puntaje.");
+        }
+    }
+
+    #region Botones
     void BotonCorrecto()
     {
-        // Acción para el botón correcto
-        Debug.Log("¡Correcto!");
-        audioSource.PlayOneShot(correctSound);
-        AsignarLetrasABotones(); // Cambiar las letras y volver a empezar
+        // Sumar puntaje y aciertos
+        puntajeTotal += 10;
+        aciertos++;
+
+        // Comprobar si se ha alcanzado el número de aciertos para finalizar el juego
+        if (aciertos >= 10)
+        {
+            // Mostrar el panel de puntaje y detener el juego
+            MostrarPanelPuntaje();
+            DesactivarBotones(); // Desactiva los botones para que no se puedan hacer más clics
+        }
+        else
+        {
+            // Activar el objeto temporalmente por 2 segundos
+            StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
+            audioSource.PlayOneShot(correctSound);
+
+            // Cambiar las letras y volver a empezar
+            AsignarLetrasABotones(); 
+        }
     }
 
     void BotonIncorrecto()
     {
+        // Incrementar los errores cuando se selecciona una opción incorrecta
+        errores++;
+        
         // Acción para el botón incorrecto
         Debug.Log("Incorrecto, intenta de nuevo.");
         audioSource.PlayOneShot(incorrectSound);
+    }
+
+    private void DesactivarBotones()
+    {
+        // Desactivar todos los botones para que no puedan ser presionados
+        foreach (Button boton in botones)
+        {
+            boton.interactable = false;
+        }
+    }
+    #endregion
+
+    private IEnumerator MostrarObjetoTemporalmente(GameObject objeto, float duracion)
+    {
+        // Activar el objeto
+        objeto.SetActive(true);
+
+        // Esperar por el tiempo definido
+        yield return new WaitForSeconds(duracion);
+
+        // Desactivar el objeto
+        objeto.SetActive(false);
     }
 
     List<char> MezclarLista(List<char> lista)
@@ -94,10 +165,8 @@ public class Level3Manager : MonoBehaviour
         return lista;
     }
 
-    public void BackMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+    public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }
+    public void Replay(){ SceneManager.LoadScene("Level 3"); }
 
     public void ToggleMusic()
     {
