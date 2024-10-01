@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Nivel 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6507248179741810122, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16cb6334283487d428b0e3df87b7cc29, type: 3}
     - target: {fileID: 8985300880399700259, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_text
       value: Abecedario
