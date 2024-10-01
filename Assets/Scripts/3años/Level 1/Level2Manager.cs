@@ -12,6 +12,10 @@ public class Level2Manager : MonoBehaviour
     public Button[] botones; // Array de botones para letras
     [SerializeField] private GameObject _objetoPoints;
     [SerializeField] private GameObject _panelPuntaje;
+    
+    [SerializeField] private CanvasGroup fadePanelCanvasGroup; // CanvasGroup del fadePanel
+    [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
+    [SerializeField] private float fadeDuration = 1f;
 
     private int puntajeTotal = 0; // Puntaje total del jugador
     private int aciertos = 0; // Contador de aciertos
@@ -41,10 +45,42 @@ public class Level2Manager : MonoBehaviour
 
     void Start()
     {
+        // Inicialmente desactivar el mainPanel
+        mainPanel.SetActive(false);
+        // Iniciar el juego con un fade
+        IniciarJuegoConFade();
+        
         _panelPuntaje.SetActive(false);
         audioSource = soundObject.GetComponent<AudioSource>();
+
         AsignarLetrasABotones(); // Inicializa el juego
     }
+
+    #region Fade Coroutines
+   void IniciarJuegoConFade()
+    {
+        StartCoroutine(FadeInGamePanel());
+    }
+
+    private IEnumerator FadeInGamePanel()
+    {
+        // Activa el mainPanel y lo configura para que no se vea
+        mainPanel.SetActive(true);
+        fadePanelCanvasGroup.alpha = 1; // Comienza con el panel de fade completamente negro
+
+        // Fade out
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            yield return null;
+        }
+
+        fadePanelCanvasGroup.alpha = 0; // Asegurarse de que el alpha esté en 0
+        fadePanelCanvasGroup.gameObject.SetActive(false); // Desactivar el fadePanel
+    }
+    #endregion
 
     void AsignarLetrasABotones()
     {
@@ -143,13 +179,7 @@ public class Level2Manager : MonoBehaviour
         audioSource.PlayOneShot(incorrectSound);
     }
 
-    private void DesactivarBotones()
-    {
-        foreach (Button boton in botones)
-        {
-            boton.interactable = false; // Desactivar todos los botones
-        }
-    }
+    private void DesactivarBotones() { foreach (Button boton in botones) {boton.interactable = false; } }
     #endregion
 
     private IEnumerator MostrarObjetoTemporalmente(GameObject objeto, float duracion)

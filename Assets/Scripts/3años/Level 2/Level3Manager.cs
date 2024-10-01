@@ -17,6 +17,10 @@ public class Level3Manager : MonoBehaviour
     private int aciertos = 0; // Contador de aciertos
     private int errores = 0;  // Contador de errores
     private char letraCorrecta;
+    
+    [SerializeField] private CanvasGroup fadePanelCanvasGroup; // CanvasGroup del fadePanel
+    [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
+    [SerializeField] private float fadeDuration = 1f;
 
     [SerializeField]private GameObject soundObject; 
     [SerializeField]private AudioClip correctSound;
@@ -28,6 +32,11 @@ public class Level3Manager : MonoBehaviour
 
     void Start()
     {
+        // Inicialmente desactivar el mainPanel
+        mainPanel.SetActive(false);
+        // Iniciar el juego con un fade
+        IniciarJuegoConFade();
+        
         _panelPuntaje.SetActive(false);
 
         // Inicializa la lista de letras de la A a la Z
@@ -40,6 +49,32 @@ public class Level3Manager : MonoBehaviour
 
         AsignarLetrasABotones();
     }
+    
+    #region Fade Coroutines
+   void IniciarJuegoConFade()
+    {
+        StartCoroutine(FadeInGamePanel());
+    }
+
+    private IEnumerator FadeInGamePanel()
+    {
+        // Activa el mainPanel y lo configura para que no se vea
+        mainPanel.SetActive(true);
+        fadePanelCanvasGroup.alpha = 1; // Comienza con el panel de fade completamente negro
+
+        // Fade out
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            yield return null;
+        }
+
+        fadePanelCanvasGroup.alpha = 0; // Asegurarse de que el alpha esté en 0
+        fadePanelCanvasGroup.gameObject.SetActive(false); // Desactivar el fadePanel
+    }
+    #endregion
 
     void AsignarLetrasABotones()
     {

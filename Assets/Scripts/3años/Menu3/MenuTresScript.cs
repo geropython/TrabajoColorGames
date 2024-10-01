@@ -76,14 +76,10 @@ public class MenuTresScript : MonoBehaviour
 
         canvasGroup.alpha = 1; // Asegurarse de que esté completamente visible
     }
-
+    // public void OpenWebPage() { Application.OpenURL("https://sites.google.com/view/colorsgames/inicio?authuser=0"); }
     public void Abecedario() { SceneManager.LoadScene("Abecedario"); }
-
     public void Nivel1() { SceneManager.LoadScene("Nivel 1"); }
-
     public void Nivel2() { SceneManager.LoadScene("Nivel 2"); }
-
     public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }
-
     public void Quit(){Application.Quit();}
 }
