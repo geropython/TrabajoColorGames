@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 240090c27f023df4d89143468d0431e7
   - enabled: 1
-    path: Assets/Scenes/Nivel 1.unity
+    path: Assets/Scenes/Abecedario.unity
     guid: b7cb2f80d1d97854f91223cf93bbc742
   - enabled: 1
     path: Assets/Scenes/Nivel 2.unity
     guid: 37b36b9767f69f445aa01f6bf5036a4a
   - enabled: 1
-    path: Assets/Scenes/Nivel 3.unity
+    path: Assets/Scenes/Nivel 1.unity
     guid: de197f1c53eb23d458aa1067ef039338
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 154d04390f6f5614d84eb334bbcd9b44, type: 2}

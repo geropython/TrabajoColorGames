@@ -173,7 +173,7 @@ public class Level2Manager : MonoBehaviour
     }
 
     public void BackMenu() { SceneManager.LoadScene("MainMenu"); }
-    public void Replay() { SceneManager.LoadScene("Level 2"); }
+    public void Replay() { SceneManager.LoadScene("Level 1"); }
 
     public void ToggleMusic()
     {

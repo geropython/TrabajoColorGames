@@ -166,7 +166,7 @@ public class Level3Manager : MonoBehaviour
     }
 
     public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }
-    public void Replay(){ SceneManager.LoadScene("Level 3"); }
+    public void Replay(){ SceneManager.LoadScene("Level 2"); }
 
     public void ToggleMusic()
     {

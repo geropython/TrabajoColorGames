@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuTresScript : MonoBehaviour
 {
+    public void Abecedario()
+    {
+        SceneManager.LoadScene("Abecedario");
+    }
     public void Nivel1()
     {
         SceneManager.LoadScene("Nivel 1");
@@ -13,10 +17,6 @@ public class MenuTresScript : MonoBehaviour
     public void Nivel2()
     {
         SceneManager.LoadScene("Nivel 2");
-    }
-    public void Nivel3()
-    {
-        SceneManager.LoadScene("Nivel 3");
     }
     public void BackMenu()
     {
