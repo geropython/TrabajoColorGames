@@ -106,7 +106,7 @@ public class Level2Manager : MonoBehaviour
 
         if (textosPanel.Length >= 2)
         {
-            textosPanel[0].text = "Puntaje Total: " + puntajeTotal.ToString();
+            textosPanel[0].text = "Puntaje: " + puntajeTotal.ToString();
             textosPanel[1].text = "Errores: " + errores.ToString();
         }
         else
@@ -140,7 +140,6 @@ public class Level2Manager : MonoBehaviour
     void BotonIncorrecto()
     {
         errores++; // Incrementar errores
-        Debug.Log("Incorrecto, intenta de nuevo.");
         audioSource.PlayOneShot(incorrectSound);
     }
 
@@ -173,7 +172,6 @@ public class Level2Manager : MonoBehaviour
     }
 
     public void BackMenu() { SceneManager.LoadScene("MainMenu"); }
-    public void Replay() { SceneManager.LoadScene("Level 1"); }
 
     public void ToggleMusic()
     {
