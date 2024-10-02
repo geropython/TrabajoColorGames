@@ -7,11 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class Level3Manager : MonoBehaviour
 {
+    #region Variables
     // Referencias
     public TextMeshProUGUI letraText;
     public Button[] botones;
     [SerializeField] private GameObject _objetoPoints;
     [SerializeField] private GameObject _panelPuntaje;
+    
+    public int totalOleadas = 10; // Total de oleadas
+    private int oleadaActual = 1; // Oleada actual
+    public TextMeshProUGUI contadorOleadasText;
 
     private int puntajeTotal = 0; // Variable para llevar el puntaje total
     private int aciertos = 0; // Contador de aciertos
@@ -25,13 +30,18 @@ public class Level3Manager : MonoBehaviour
     [SerializeField]private GameObject soundObject; 
     [SerializeField]private AudioClip correctSound;
     [SerializeField]private AudioClip incorrectSound;
-    private AudioSource audioSource;
     public AudioSource musicSource; 
+    public AudioSource audioSource;
     private bool isMusicOn = true;
     private List<char> letrasDisponibles = new List<char>();
 
+    #endregion
+
     void Start()
     {
+        // Actualiza el contador de oleadas en pantalla al iniciar el juego
+        ActualizarContadorOleadas();
+        
         // Inicialmente desactivar el mainPanel
         mainPanel.SetActive(false);
         // Iniciar el juego con un fade
@@ -49,7 +59,12 @@ public class Level3Manager : MonoBehaviour
 
         AsignarLetrasABotones();
     }
-    
+    void ActualizarContadorOleadas()
+    {
+        // Actualiza el texto en pantalla con el formato "Oleada Actual / Total de Oleadas"
+        contadorOleadasText.text = "Oleada: " + oleadaActual.ToString() + " / " + totalOleadas.ToString();
+    }
+
     #region Fade Coroutines
    void IniciarJuegoConFade()
     {
@@ -135,25 +150,27 @@ public class Level3Manager : MonoBehaviour
     {
         // Sumar puntaje y aciertos
         puntajeTotal += 10;
-        aciertos++;
 
-        // Comprobar si se ha alcanzado el número de aciertos para finalizar el juego
-        if (aciertos >= 10)
+        // Avanza directamente a la siguiente oleada (ronda) con cada acierto
+        if (oleadaActual < totalOleadas)
         {
-            // Mostrar el panel de puntaje y detener el juego
-            MostrarPanelPuntaje();
-            DesactivarBotones(); // Desactiva los botones para que no se puedan hacer más clics
+            oleadaActual++; // Avanza a la siguiente oleada
+            ActualizarContadorOleadas(); // Actualizar el contador de oleadas en pantalla
+            AsignarLetrasABotones(); // Cambiar las letras y volver a empezar
         }
         else
         {
-            // Activar el objeto temporalmente por 2 segundos
-            StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
-            audioSource.PlayOneShot(correctSound);
-
-            // Cambiar las letras y volver a empezar
-            AsignarLetrasABotones(); 
+            // Si todas las oleadas han sido completadas, mostrar el panel de puntaje
+            MostrarPanelPuntaje();
+            DesactivarBotones(); // Desactiva los botones para que no se puedan hacer más clics
         }
+
+        // Activar el objeto temporalmente por 2 segundos (puntos que se muestran al acertar)
+        StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
+        audioSource.PlayOneShot(correctSound); // Sonido de acierto
     }
+
+
 
     void BotonIncorrecto()
     {

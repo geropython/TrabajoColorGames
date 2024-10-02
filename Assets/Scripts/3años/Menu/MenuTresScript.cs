@@ -10,7 +10,6 @@ public class MenuTresScript : MonoBehaviour
     [SerializeField] private CanvasGroup _introCanvasGroup; // Para controlar la opacidad de la intro
     [SerializeField] private CanvasGroup _menuCanvasGroup;  // Para controlar la opacidad del menú
     [SerializeField] private AudioSource _musicAudioSource;  // Audio de la música
-    [SerializeField] private AudioSource _introAudioSource;  // Audio de la charla de introducción
 
     void Start()
     {
@@ -22,7 +21,6 @@ public class MenuTresScript : MonoBehaviour
 
         // Nos aseguramos de que los audios no se reproduzcan al inicio
         _musicAudioSource.Stop();
-        _introAudioSource.Stop();
 
         // Iniciamos la corutina para esperar 3 segundos y luego hacer el parpadeo
         StartCoroutine(ShowMenuAfterIntro());
@@ -42,7 +40,6 @@ public class MenuTresScript : MonoBehaviour
 
         // Reproducir los dos audios cuando el menú se activa
         _musicAudioSource.Play();
-        _introAudioSource.Play();
     }
 
     // Corutina para desvanecer (fade out) un panel
@@ -78,6 +75,7 @@ public class MenuTresScript : MonoBehaviour
     }
     // public void OpenWebPage() { Application.OpenURL("https://sites.google.com/view/colorsgames/inicio?authuser=0"); }
     public void Abecedario() { SceneManager.LoadScene("Abecedario"); }
+    public void Album() { SceneManager.LoadScene("Album"); }
     public void Nivel1() { SceneManager.LoadScene("Nivel 1"); }
     public void Nivel2() { SceneManager.LoadScene("Nivel 2"); }
     public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }

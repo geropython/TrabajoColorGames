@@ -22,6 +22,10 @@ public class Level2Manager : MonoBehaviour
     private int errores = 0;  // Contador de errores
     private char letraCorrecta; // Letra correcta seleccionada
 
+    public int totalOleadas = 10; // Total de oleadas
+    private int oleadaActual = 1; // Oleada actual
+    public TextMeshProUGUI contadorOleadasText;
+
     [SerializeField] private GameObject soundObject; 
     [SerializeField] private AudioClip correctSound;
     [SerializeField] private AudioClip incorrectSound;
@@ -45,6 +49,9 @@ public class Level2Manager : MonoBehaviour
 
     void Start()
     {
+        // Actualiza el contador de oleadas en pantalla al iniciar el juego
+        ActualizarContadorOleadas();
+
         // Inicialmente desactivar el mainPanel
         mainPanel.SetActive(false);
         // Iniciar el juego con un fade
@@ -54,6 +61,11 @@ public class Level2Manager : MonoBehaviour
         audioSource = soundObject.GetComponent<AudioSource>();
 
         AsignarLetrasABotones(); // Inicializa el juego
+    }
+    void ActualizarContadorOleadas()
+    {
+        // Actualiza el texto en pantalla con el formato "Oleada Actual / Total de Oleadas"
+        contadorOleadasText.text = "Oleada: " + oleadaActual.ToString() + " / " + totalOleadas.ToString();
     }
 
     #region Fade Coroutines
@@ -158,18 +170,22 @@ public class Level2Manager : MonoBehaviour
         {
             puntajeTotal += 10; // Sumar puntaje y aciertos
             aciertos++;
-
-            if (aciertos >= 5) // Cambiado a 5 para finalizar el juego
+            if (oleadaActual < totalOleadas)
             {
-                MostrarPanelPuntaje();
-                DesactivarBotones(); // Desactiva los botones
+                oleadaActual++; // Avanza a la siguiente oleada
+                ActualizarContadorOleadas(); // Actualizar el contador de oleadas en pantalla
+                AsignarLetrasABotones(); // Cambiar las letras y volver a empezar
             }
             else
             {
-                StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
-                audioSource.PlayOneShot(correctSound);
-                AsignarLetrasABotones(); // Reiniciar letras y botones
+                // Si todas las oleadas han sido completadas, mostrar el panel de puntaje
+                MostrarPanelPuntaje();
+                DesactivarBotones(); // Desactiva los botones para que no se puedan hacer más clics
             }
+
+            StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
+            audioSource.PlayOneShot(correctSound);
+            AsignarLetrasABotones(); // Reiniciar letras y botones
         }
     }
 
