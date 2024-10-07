@@ -40,7 +40,7 @@ public class AlbumScript : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("3Menu");
     }
     public void ToggleMusic()
     {

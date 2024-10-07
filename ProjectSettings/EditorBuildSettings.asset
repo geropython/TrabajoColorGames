@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Scripts/3a\xF1os/Menu/MainMenu.unity"
+    path: "Assets/Scripts/3a\xF1os/Menu/3Menu.unity"
     guid: 240090c27f023df4d89143468d0431e7
   - enabled: 1
     path: "Assets/Scripts/3a\xF1os/Abecedario/Abecedario.unity"
@@ -25,3 +25,4 @@ EditorBuildSettings:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 8e01c69696444c8478393f621e924243, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 2eada42dc4812c5498c918009eae751e, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 9d3f068215b689a47906d7e0756954d9, type: 2}
+  m_UseUCBPForAssetBundles: 0

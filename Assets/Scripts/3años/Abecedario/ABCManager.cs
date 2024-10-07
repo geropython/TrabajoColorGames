@@ -48,7 +48,7 @@ public class ABCManager : MonoBehaviour
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("3Menu");
     }
     public void ToggleMusic()
     {

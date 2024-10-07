@@ -78,6 +78,6 @@ public class MenuTresScript : MonoBehaviour
     public void Album() { SceneManager.LoadScene("Album"); }
     public void Nivel1() { SceneManager.LoadScene("Nivel 1"); }
     public void Nivel2() { SceneManager.LoadScene("Nivel 2"); }
-    public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }
+    public void BackMenu(){ SceneManager.LoadScene("3Menu"); }
     public void Quit(){Application.Quit();}
 }
