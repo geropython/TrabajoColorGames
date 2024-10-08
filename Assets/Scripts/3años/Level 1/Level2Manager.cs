@@ -17,13 +17,13 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
     [SerializeField] private float fadeDuration = 1f;
 
-    private int puntajeTotal = 0; // Puntaje total del jugador
-    private int aciertos = 0; // Contador de aciertos
-    private int errores = 0;  // Contador de errores
-    private char letraCorrecta; // Letra correcta seleccionada
+    private int puntajeTotal = 0;
+    private int aciertos = 0;
+    private int errores = 0;
+    private char letraCorrecta;
 
-    public int totalOleadas = 10; // Total de oleadas
-    private int oleadaActual = 1; // Oleada actual
+    public int totalOleadas = 10;
+    private int oleadaActual = 1;
     public TextMeshProUGUI contadorOleadasText;
 
     [SerializeField] private GameObject soundObject; 
@@ -33,7 +33,6 @@ public class Level2Manager : MonoBehaviour
     public AudioSource musicSource; 
     private bool isMusicOn = true;
 
-    // Diccionario que asocia letras a palabras y dibujos
     private Dictionary<char, string> letrasPalabras = new Dictionary<char, string>()
     {
         { 'A', "Avión" },
@@ -44,7 +43,6 @@ public class Level2Manager : MonoBehaviour
 
     // Lista de los sprites asociados a cada letra
     public Sprite[] dibujos; // Arrastra tus imágenes aquí en el inspector
-
     #endregion
 
     void Start()

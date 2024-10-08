@@ -22,7 +22,7 @@ public class SoundWord : MonoBehaviour
         voiceButton.onClick.AddListener(PlayVoice);
     }
 
-    void ToggleMusic()
+    public void ToggleMusic()
     {
         if (isMusicPlaying)
         {
