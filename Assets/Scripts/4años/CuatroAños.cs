@@ -1,17 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CuatroAños : MonoBehaviour
 {
     [SerializeField] private AudioSource _musicAudioSource; 
     [SerializeField] private GameObject _fadeOut;
-
+    [SerializeField] private Animator level1ButtonAnimator;
+    [SerializeField] private Animator level2ButtonAnimator;
+    [SerializeField] private AudioSource musicSource;
+    private bool isMusicOn = true;
     void Start()
     {
-
         // Nos aseguramos de que los audios no se reproduzcan al inicio
         _musicAudioSource.Stop();
 
@@ -42,18 +42,52 @@ public class CuatroAños : MonoBehaviour
         canvasGroup.alpha = 0; // Asegurarse de que esté completamente invisible
     }
 
+    // Corrutina para reproducir la animación y luego cambiar de escena
+    IEnumerator PlayButtonAnimationAndLoadScene(Animator buttonAnimator, string sceneName)
+    {
+        buttonAnimator.ResetTrigger("Click"); // Asegurarse de que no hay triggers previos
+        buttonAnimator.SetTrigger("Click"); // Reproduce la animación del botón
+        yield return new WaitForSeconds(buttonAnimator.GetCurrentAnimatorStateInfo(0).length); // Espera a que termine la animación
+
+        SceneManager.LoadScene(sceneName); // Cambia a la escena deseada
+    }
+
     public void Level1()
+    {
+        // Iniciar la corrutina para el botón de nivel 1 solo cuando el usuario haga clic
+        StartCoroutine(PlayButtonAnimationAndLoadScene(level1ButtonAnimator, "4_Level1"));
+    }
+
+    public void Level2()
+    {
+        // Iniciar la corrutina para el botón de nivel 2 solo cuando el usuario haga clic
+        StartCoroutine(PlayButtonAnimationAndLoadScene(level2ButtonAnimator, "4_Level2"));
+    }
+    public void ChangeSceneToLevel1() // Sin parámetros
     {
         SceneManager.LoadScene("4_Level1");
     }
-    public void Level2()
-    {
-        SceneManager.LoadScene("4_Level2");
-    }
-    public void Level3()
-    {
-        SceneManager.LoadScene("4_Level3");
-    }
-    public void BackMenu(){ SceneManager.LoadScene("MainMenu"); }
 
+    public void ChangeSceneWithName(string sceneName) // Con un string como parámetro
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void ToggleMusic()
+    {
+        isMusicOn = !isMusicOn;
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Pause();
+        }
+    }
+
+    public void BackMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
