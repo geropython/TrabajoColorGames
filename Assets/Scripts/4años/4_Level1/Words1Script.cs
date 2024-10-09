@@ -23,7 +23,6 @@ public class Words1Script : MonoBehaviour
     [SerializeField] private GameObject correctFeedback;
 
     [SerializeField] private CanvasGroup fadePanelCanvasGroup;
-    [SerializeField] private GameObject mainPanel;
     [SerializeField] private float fadeDuration = 1f;
 
     private int currentRound = 0;

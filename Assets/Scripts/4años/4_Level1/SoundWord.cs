@@ -20,6 +20,12 @@ public class SoundWord : MonoBehaviour
         musicButton.onClick.AddListener(ToggleMusic);
         backMenuButton.onClick.AddListener(BackToMenu);
         voiceButton.onClick.AddListener(PlayVoice);
+        
+        // Asegúrate de que la música esté reproduciéndose al inicio
+        if (!musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
     }
 
     public void ToggleMusic()
@@ -27,17 +33,26 @@ public class SoundWord : MonoBehaviour
         if (isMusicPlaying)
         {
             musicSource.Pause(); // Pausar música
-            musicButton.GetComponentInChildren<Text>().text = "Reproducir Música"; // Cambiar texto del botón
+            Debug.Log("Música pausada");
         }
         else
         {
             musicSource.Play(); // Reproducir música
-            musicButton.GetComponentInChildren<Text>().text = "Detener Música"; // Cambiar texto del botón
+            Debug.Log("Música reproduciéndose");
         }
         isMusicPlaying = !isMusicPlaying; // Cambiar el estado de la música
     }
 
-    void BackToMenu() { SceneManager.LoadScene("4Menu"); }
-    void PlayVoice() { voiceSource.Play(); }
+    public void BackToMenu() 
+    {
+        SceneManager.LoadScene("4Menu"); 
+    }
 
+    void PlayVoice()
+    {
+        if (!voiceSource.isPlaying) // Verifica que el audio de voz no esté reproduciéndose
+        {
+            voiceSource.PlayOneShot(voiceSource.clip); // Reproducir el clip de voz
+        }
+    }
 }
