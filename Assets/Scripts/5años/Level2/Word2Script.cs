@@ -10,7 +10,7 @@ public class Word2Script : MonoBehaviour
 {
     #region Variables
     [SerializeField] private string[] palabras;
-    [SerializeField] private string[] pistas; 
+    [SerializeField] private Sprite[] pistasImagenes; // Arreglo de imágenes de pistas
     [SerializeField] private CanvasGroup fadePanelCanvasGroup;
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private TextMeshProUGUI puntosTexto;
@@ -20,7 +20,7 @@ public class Word2Script : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tiempoFinalTexto;
     [SerializeField] private TextMeshProUGUI recordTexto;
     [SerializeField] private TextMeshProUGUI palabraDisplay;
-    [SerializeField] private TextMeshProUGUI pistaTexto;
+    [SerializeField] private Image pistaImagen; // Ahora es una imagen
     [SerializeField] private TextMeshProUGUI testTimerText;
     private float testTimer = 0f;
     [SerializeField] private Transform letrasContainer;
@@ -43,7 +43,7 @@ public class Word2Script : MonoBehaviour
 
     private void Start()
     {
-        pistaTexto.gameObject.SetActive(false);
+        pistaImagen.gameObject.SetActive(false); // Asegúrate de que la imagen esté oculta al inicio
         pistaButton.onClick.AddListener(MostrarPista);
 
         StartFade();
@@ -85,15 +85,15 @@ public class Word2Script : MonoBehaviour
     #region Pista
     private void MostrarPista()
     {
-        pistaTexto.text = pistas[rondaActual]; // Mostrar la pista correspondiente a la palabra actual
-        pistaTexto.gameObject.SetActive(true); // Activar el texto de la pista
-        StartCoroutine(EsconderPista()); // Esconder la pista después de 10 segundos
+        pistaImagen.sprite = pistasImagenes[rondaActual]; // Mostrar la imagen correspondiente a la palabra actual
+        pistaImagen.gameObject.SetActive(true); // Activar la imagen de la pista
+        StartCoroutine(EsconderPista()); // Esconder la imagen después de 10 segundos
     }
 
     private IEnumerator EsconderPista()
     {
         yield return new WaitForSeconds(10f); // Esperar 10 segundos
-        pistaTexto.gameObject.SetActive(false); // Ocultar el texto de la pista
+        pistaImagen.gameObject.SetActive(false); // Ocultar la imagen de la pista
     }
     #endregion
 
@@ -119,6 +119,7 @@ public class Word2Script : MonoBehaviour
         }
     }
 
+    #region Letras
     // Función para desordenar las letras
     private List<string> DesordenarLetras(string palabra)
     {
@@ -154,7 +155,6 @@ public class Word2Script : MonoBehaviour
         }
     }
 
-    // Cuando una letra es seleccionada, se agrega a la palabra en construcción
     private void SeleccionarLetra(string letra, GameObject button)
     {
         if (letrasDisponibles.Contains(letra)) // Solo permite seleccionar letras válidas
@@ -204,6 +204,7 @@ public class Word2Script : MonoBehaviour
         ActualizarVisualizacionLetras(); 
         ActualizarPalabraDisplay(); // Actualizar el display de la palabra
     }
+    #endregion
 
     private IEnumerator DesactivarFeedback()
     {
@@ -228,7 +229,7 @@ public class Word2Script : MonoBehaviour
         recordTexto.text = "Record: " + record.ToString("F2") + " s";
     }
 
-    public void BackMenu() { SceneManager.LoadScene("4Menu"); }
+    public void BackMenu() { SceneManager.LoadScene("5Menu"); }
     public void ToggleMusic()
     {
         isMusicOn = !isMusicOn;

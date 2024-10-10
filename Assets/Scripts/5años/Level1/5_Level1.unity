@@ -2594,7 +2594,6 @@ GameObject:
   - component: {fileID: 1822238458}
   - component: {fileID: 1822238457}
   - component: {fileID: 1822238461}
-  - component: {fileID: 1822238464}
   - component: {fileID: 1822238463}
   - component: {fileID: 1822238465}
   m_Layer: 5
@@ -2722,6 +2721,7 @@ MonoBehaviour:
   correctFeedback: {fileID: 1310552703}
   fadePanelCanvasGroup: {fileID: 2016857062}
   fadeDuration: 1
+  _feedBack: {fileID: 1310552703}
   musicSource: {fileID: 1822238463}
 --- !u!82 &1822238463
 AudioSource:
@@ -2733,8 +2733,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a104fab5d4acdd247bd5ea8084765bf5, type: 3}
-  m_Resource: {fileID: 8300000, guid: a104fab5d4acdd247bd5ea8084765bf5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 48648b120fa88bd4dbe1645886053c44, type: 3}
+  m_Resource: {fileID: 8300000, guid: 48648b120fa88bd4dbe1645886053c44, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -2820,24 +2820,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1822238464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822238456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b9c15d0631229448cd95809b7d68d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicButton: {fileID: 1329176839}
-  backMenuButton: {fileID: 1493143614}
-  voiceButton: {fileID: 388678621}
-  musicSource: {fileID: 1822238463}
-  voiceSource: {fileID: 0}
-  isMusicPlaying: 1
 --- !u!114 &1822238465
 MonoBehaviour:
   m_ObjectHideFlags: 0

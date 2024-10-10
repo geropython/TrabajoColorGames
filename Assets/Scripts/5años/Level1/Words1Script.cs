@@ -173,7 +173,7 @@ public class Words1Script : MonoBehaviour
         endPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Puntuación Final: " + score; // Mostrar puntuación final
     }
 
-    public void BackMenu() { SceneManager.LoadScene("4Menu"); }
+    public void BackMenu() { SceneManager.LoadScene("5Menu"); }
     public void ToggleMusic()
     {
         isMusicOn = !isMusicOn;
