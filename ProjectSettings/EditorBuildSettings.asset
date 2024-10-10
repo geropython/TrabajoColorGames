@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: "Assets/Scripts/3a\xF1os/\xC1lbum/Album.unity"
     guid: 5f9c6f81a6080a84496ccb37069d4b09
   - enabled: 1
+    path: "Assets/Scripts/4a\xF1os/4Menu.unity"
+    guid: 4d75efd82943180468ad02c510d9dccb
+  - enabled: 1
     path: "Assets/Scripts/4a\xF1os/4_Level1/4_Level1.unity"
     guid: 64e1c9fe831d6e641b52c037d38081eb
   - enabled: 1

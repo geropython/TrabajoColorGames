@@ -24,12 +24,16 @@ public class Words1Script : MonoBehaviour
 
     [SerializeField] private CanvasGroup fadePanelCanvasGroup;
     [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private GameObject _feedBack;
 
     private int currentRound = 0;
     private int score = 0;
     private string currentWord;
     private int revealedLetters = 1;
     private Coroutine revealCoroutine;
+
+    [SerializeField] private AudioSource musicSource; 
+    private bool isMusicOn = true;
     #endregion
 
     void Start()
@@ -170,4 +174,16 @@ public class Words1Script : MonoBehaviour
     }
 
     public void BackMenu() { SceneManager.LoadScene("4Menu"); }
+    public void ToggleMusic()
+    {
+        isMusicOn = !isMusicOn;
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Pause();
+        }
+    }
 }
