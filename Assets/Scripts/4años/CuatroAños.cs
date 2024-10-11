@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CuatroAños : MonoBehaviour
-{
-    [SerializeField] private AudioSource _musicAudioSource; 
+{ 
     [SerializeField] private GameObject _fadeOut;
     [SerializeField] private Animator level1ButtonAnimator;
     [SerializeField] private Animator level2ButtonAnimator;
@@ -13,7 +12,7 @@ public class CuatroAños : MonoBehaviour
     void Start()
     {
         // Nos aseguramos de que los audios no se reproduzcan al inicio
-        _musicAudioSource.Stop();
+        musicSource.Stop();
 
         // Iniciamos la corutina para esperar 3 segundos y luego hacer el parpadeo
         StartCoroutine(ShowMenuAfterIntro());
@@ -24,7 +23,7 @@ public class CuatroAños : MonoBehaviour
         // Esperar 3 segundos
         yield return new WaitForSeconds(3f);
 
-        _musicAudioSource.Play();
+        musicSource.Play();
     }
 
     IEnumerator FadeOut(CanvasGroup canvasGroup, float duration)
@@ -62,15 +61,6 @@ public class CuatroAños : MonoBehaviour
     {
         // Iniciar la corrutina para el botón de nivel 2 solo cuando el usuario haga clic
         StartCoroutine(PlayButtonAnimationAndLoadScene(level2ButtonAnimator, "4_Level2"));
-    }
-    public void ChangeSceneToLevel1() // Sin parámetros
-    {
-        SceneManager.LoadScene("4_Level1");
-    }
-
-    public void ChangeSceneWithName(string sceneName) // Con un string como parámetro
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
     public void ToggleMusic()
