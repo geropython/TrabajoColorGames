@@ -36,17 +36,13 @@ public class Etapa5Script : MonoBehaviour
         fadePanelCanvasGroup.alpha = 0; // Asegurarse de que el alpha esté en 0
         fadePanelCanvasGroup.gameObject.SetActive(false); // Desactivar el fadePanel
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     IEnumerator PlayButtonAnimationAndLoadScene(Animator buttonAnimator, string sceneName)
     {
         buttonAnimator.ResetTrigger("Click"); // Asegurarse de que no hay triggers previos
         buttonAnimator.SetTrigger("Click"); // Reproduce la animación del botón
-        yield return new WaitForSeconds(buttonAnimator.GetCurrentAnimatorStateInfo(0).length); // Espera a que termine la animación
+        
+        yield return new WaitForSeconds(4f);
 
         SceneManager.LoadScene(sceneName); // Cambia a la escena deseada
     }
