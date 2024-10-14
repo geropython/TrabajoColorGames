@@ -2021,7 +2021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194081937313453843, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_text
-      value: Nivel 2
+      value: nivel 2
       objectReference: {fileID: 0}
     - target: {fileID: 4431439677966787755, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_Sprite
@@ -2189,7 +2189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5464830761474706804, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_text
-      value: Nivel 1
+      value: nivel 1
       objectReference: {fileID: 0}
     - target: {fileID: 5873368923897002203, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2400,7 +2400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bccdd412d5d0224b8079643f9c233fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicAudioSource: {fileID: 1156938071412732678}
   _fadeOut: {fileID: 1982479399}
   level1ButtonAnimator: {fileID: 1156938071412732683}
   level2ButtonAnimator: {fileID: 1156938071412732682}
