@@ -21,7 +21,7 @@ public class CuatroAños : MonoBehaviour
     IEnumerator ShowMenuAfterIntro()
     {
         // Esperar 3 segundos
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         musicSource.Play();
     }
