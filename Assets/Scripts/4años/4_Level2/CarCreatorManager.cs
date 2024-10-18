@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Necesario para trabajar con imágenes de UI
+using TMPro; // Para manejar textos si usas TextMeshPro
 
 public class CarCreatorManager : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private GameObject car; // Referencia al auto base
-    public List<GameObject> wheelOptions; // Lista de opciones de ruedas
-    public List<GameObject> windowOptions; // Lista de opciones de ventanas
-    public List<GameObject> bodyColorDisplays; // Lista de colores de carrocería
+    [SerializeField] private CanvasGroup fadePanelCanvasGroup;
+    [SerializeField] private float fadeDuration = 1f;
+    
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource incorrectSound;
+    private bool isMusicOn = true;
 
-    [SerializeField] private GameObject[] wheelDisplays; // Array de GameObjects que muestra la rueda seleccionada
-    [SerializeField] private GameObject[] windowDisplays; // Array de GameObjects que muestra la ventana seleccionada
+    [SerializeField] private TextMeshProUGUI objectivesText; // Texto para mostrar los aciertos
+
+    [SerializeField] private GameObject car;
+    public List<GameObject> wheelOptions;
+    public List<GameObject> windowOptions;
+    public List<GameObject> bodyColorDisplays;
+
+    [SerializeField] private GameObject correctFeedback;
+
+    [SerializeField] private GameObject[] wheelDisplays;
+    [SerializeField] private GameObject[] windowDisplays;
+
+    // Objetivos
+    [SerializeField] private GameObject[] objectiveBodyDisplays;
+    [SerializeField] private GameObject[] objectiveWindowDisplays;
+    [SerializeField] private GameObject[] objectiveWheelDisplays;
+
+    // UI para el puntaje
+    [SerializeField] private GameObject endPanel;
+    [SerializeField] private TextMeshProUGUI scoreText, errorsText, recordText;
 
     private int currentWheelIndex = 0;
     private int currentWindowIndex = 0;
@@ -21,23 +43,64 @@ public class CarCreatorManager : MonoBehaviour
     private GameObject currentWheels;
     private GameObject currentWindows;
 
-    // Para rastrear los componentes tocados recientemente
+    private int targetWheelIndex;
+    private int targetWindowIndex;
+    private int targetBodyColorIndex;
+
+    private int score = 0;
+    private int errors = 0;
+    private int correctObjectives = 0;
+    private int maxCorrectObjectives = 3; // Máximo de objetivos correctos para terminar el nivel
+    private int previousRecord = 0;
+
     private bool wheelTouched = false;
     private bool windowTouched = false;
     private bool bodyColorTouched = false;
 
     #endregion
+    #region Fade
+    void StartFade()
+    {
+        StartCoroutine(FadePanel());
+    }
+
+    private IEnumerator FadePanel()
+    {
+        fadePanelCanvasGroup.alpha = 1;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            yield return null;
+        }
+
+        fadePanelCanvasGroup.alpha = 0;
+        fadePanelCanvasGroup.gameObject.SetActive(false); 
+    }
+    #endregion
 
     void Start()
     {
+        StartFade();
         InitializeCar();
         UpdateWheels();
         UpdateWindows();
+        GenerateRandomObjective();  // Generar un objetivo al iniciar el nivel
     }
 
     void InitializeCar() 
     {
         car = Instantiate(car); 
+    }
+    private IEnumerator ShowCorrectFeedback()
+    {
+        correctFeedback.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        correctFeedback.SetActive(false);
     }
 
     #region Select
@@ -87,16 +150,15 @@ public class CarCreatorManager : MonoBehaviour
 
     public void ChangeBodyColor(int index)
     {
-        // Desactivar todos los GameObjects de color
         foreach (var display in bodyColorDisplays)
         {
             display.SetActive(false);
         }
 
-        // Activar solo el GameObject del color seleccionado
         bodyColorDisplays[index].SetActive(true);
-        bodyColorTouched = true; // Marcar que se tocó un color
-        CheckRecentlyTouched(); // Comprobar qué se ha tocado
+        currentBodyColorIndex = index; // Guardar la selección de color
+        bodyColorTouched = true;
+        CheckRecentlyTouched();
     }
     #endregion
 
@@ -115,24 +177,104 @@ public class CarCreatorManager : MonoBehaviour
     // Método para activar/desactivar componentes según los tocados
     void CheckRecentlyTouched()
     {
-        // Activar ruedas si fueron tocadas
         foreach (var display in wheelDisplays)
         {
-            display.SetActive(false); // Desactivar todos los displays de ruedas
+            display.SetActive(false); 
         }
         if (wheelTouched)
         {
-            wheelDisplays[currentWheelIndex].SetActive(true); // Activar el display de la rueda seleccionada
+            wheelDisplays[currentWheelIndex].SetActive(true); 
         }
 
-        // Activar ventanas si fueron tocadas
         foreach (var display in windowDisplays)
         {
-            display.SetActive(false); // Desactivar todos los displays de ventanas
+            display.SetActive(false); 
         }
         if (windowTouched)
         {
-            windowDisplays[currentWindowIndex].SetActive(true); // Activar el display de la ventana seleccionada
+            windowDisplays[currentWindowIndex].SetActive(true); 
         }
     }
+
+    #region Objective and Scoring
+
+    void GenerateRandomObjective()
+    {
+        targetWheelIndex = Random.Range(0, wheelOptions.Count);
+        targetWindowIndex = Random.Range(0, windowOptions.Count);
+        targetBodyColorIndex = Random.Range(0, bodyColorDisplays.Count);
+
+        ActivateObjectiveDisplays(targetWheelIndex, targetWindowIndex, targetBodyColorIndex);
+    }
+
+    void ActivateObjectiveDisplays(int wheelIndex, int windowIndex, int bodyColorIndex)
+    {
+        foreach (var display in objectiveBodyDisplays)
+        {
+            display.SetActive(false);
+        }
+        objectiveBodyDisplays[bodyColorIndex].SetActive(true);
+
+        foreach (var display in objectiveWindowDisplays)
+        {
+            display.SetActive(false);
+        }
+        objectiveWindowDisplays[windowIndex].SetActive(true);
+
+        foreach (var display in objectiveWheelDisplays)
+        {
+            display.SetActive(false);
+        }
+        objectiveWheelDisplays[wheelIndex].SetActive(true);
+    }
+
+    public void CheckPlayerSelections()
+    {
+        bool isCorrect = (currentWheelIndex == targetWheelIndex) && (currentWindowIndex == targetWindowIndex) && (currentBodyColorIndex == targetBodyColorIndex);
+
+        if (isCorrect)
+        {
+            StartCoroutine(ShowCorrectFeedback());
+            score += 50;
+            correctSound.Play();
+            correctObjectives++;
+        }
+        else
+        {
+            score -= 10;
+            incorrectSound.Play();
+            errors++;
+        }
+
+        scoreText.text = "Puntaje: " + score.ToString();
+        objectivesText.text = correctObjectives + "/" + maxCorrectObjectives; // Actualiza los aciertos
+
+        if (correctObjectives >= maxCorrectObjectives)
+        {
+            EndLevel();
+        }
+        else
+        {
+            GenerateRandomObjective();
+        }
+    }
+
+    void EndLevel()
+    {
+        endPanel.SetActive(true);
+        scoreText.text = "Puntaje final: " + score.ToString();
+        errorsText.text = "Errores: " + errors.ToString();
+
+        if (score > previousRecord)
+        {
+            previousRecord = score;
+            recordText.text = "¡Nuevo récord!";
+        }
+        else
+        {
+            recordText.text = "Récord: " + previousRecord.ToString();
+        }
+    }
+
+    #endregion
 }
