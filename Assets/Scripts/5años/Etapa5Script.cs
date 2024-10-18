@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Etapa5Script : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private CanvasGroup fadePanelCanvasGroup;
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private AudioSource musicSource; 
@@ -12,7 +13,8 @@ public class Etapa5Script : MonoBehaviour
     [SerializeField] private Animator level2ButtonAnimator;
     [SerializeField] private Animator cuentosButtonAnimator;
     private bool isMusicOn = true;
-    // Start is called before the first frame update
+
+    #endregion
     void Start()
     {
        StartFade();
@@ -21,7 +23,7 @@ public class Etapa5Script : MonoBehaviour
     {
         StartCoroutine(FadePanel());
     }
-     private IEnumerator FadePanel()
+    private IEnumerator FadePanel()
     {
         fadePanelCanvasGroup.alpha = 1; // Comienza con el panel de fade completamente negro
 

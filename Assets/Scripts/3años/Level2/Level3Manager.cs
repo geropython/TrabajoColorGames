@@ -18,8 +18,7 @@ public class Level3Manager : MonoBehaviour
     private int oleadaActual = 1; // Oleada actual
     public TextMeshProUGUI contadorOleadasText;
 
-    private int puntajeTotal = 0; // Variable para llevar el puntaje total
-    private int aciertos = 0; // Contador de aciertos
+    private int puntajeTotal = 0;
     private int errores = 0;  // Contador de errores
     private char letraCorrecta;
     

@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scripts/4a\xF1os/4_Level1/4_Level1.unity"
     guid: df5632a64d150ba44a0e5a45e29a81a5
+  - enabled: 1
+    path: "Assets/Scripts/4a\xF1os/4_Level2/4_Level2.unity"
+    guid: bebe6db8501bba24e81d0fc7bd3d6433
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 154d04390f6f5614d84eb334bbcd9b44, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 8e01c69696444c8478393f621e924243, type: 2}

@@ -1,31 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
 public class LevelCarManager : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private GameObject car;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private TextMeshProUGUI instructionText;
     [SerializeField] private Button redButton, blueButton, greenButton;
     [SerializeField] private Transform finishLine;
+    
+    [SerializeField] private GameObject correctFeedback;
+    private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private TextMeshProUGUI recordScoreText;
+    [SerializeField] private TextMeshProUGUI errorsText;
+    
+    private int score = 0;
+    private int errors = 0;
+    
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float moveDistance = 2f;  // Distancia que el auto avanza por acierto
+    [SerializeField] private float moveDistance = 2f;
+    
     [SerializeField] private int correctAnswers = 0;
     [SerializeField] private int _limite = 12;
     [SerializeField] private string currentColor;
 
+    [SerializeField] private CanvasGroup fadePanelCanvasGroup;
+    [SerializeField] private float fadeDuration = 1f;
+
     private List<string> colors = new List<string> { "rojo", "azul", "verde" };
     private bool shouldMove = false;
     private bool hasReachedFinish = false;
-    private Vector3 targetPosition;  // Nueva posición objetivo tras cada acierto
+    private Vector3 targetPosition;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource incorrectSound;
+    private bool isMusicOn = true;
+
+    private int recordScore;
+
+    #endregion
+
+    #region Fade
+    void StartFade()
+    {
+        StartCoroutine(FadePanel());
+    }
+
+    private IEnumerator FadePanel()
+    {
+        fadePanelCanvasGroup.alpha = 1;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            yield return null;
+        }
+
+        fadePanelCanvasGroup.alpha = 0;
+        fadePanelCanvasGroup.gameObject.SetActive(false); 
+    }
+    #endregion
 
     public void Start()
     {
+        StartFade();
         _endPanel.SetActive(false);
-        SetNewColor();  // Configura el primer color al iniciar
+        recordScore = PlayerPrefs.GetInt("RecordScore", 0);
+        SetNewColor();
         redButton.onClick.AddListener(() => CheckColor("rojo"));
         blueButton.onClick.AddListener(() => CheckColor("azul"));
         greenButton.onClick.AddListener(() => CheckColor("verde"));
@@ -37,19 +86,19 @@ public class LevelCarManager : MonoBehaviour
         {
             MoveCar();
             
-            // Compara la posición Y del auto con la posición Y deseada
-            if (Mathf.Abs(car.transform.position.y - 572f) < 0.1f) // Tolerancia de 0.1f para evitar problemas de precisión
+            if (Mathf.Abs(car.transform.position.y - 572f) < 0.1f)
             {
                 Celebrate();
             }
         }
     }
 
+    #region Color
     void SetNewColor()
     {
         int randomIndex = Random.Range(0, colors.Count);
         currentColor = colors[randomIndex];
-        instructionText.text = "Selecciona el color: " + currentColor;
+        instructionText.text = currentColor;
     }
 
     void CheckColor(string selectedColor)
@@ -57,15 +106,24 @@ public class LevelCarManager : MonoBehaviour
         if (selectedColor == currentColor)
         {
             correctAnswers++;
-            SetTargetPosition();  // Establece una nueva posición objetivo para mover el auto
-            shouldMove = true;    // Activa el movimiento del auto
+            score += 10;
+            StartCoroutine(ShowCorrectFeedback());
+            correctSound.Play();
 
-            // Verifica si ha alcanzado el número correcto de respuestas
+            SetTargetPosition();
+            shouldMove = true;
+
             if (correctAnswers >= _limite)
             {
-                Celebrate(); // Llama a la celebración si correctAnswers es 8 o más
-                return; // Sale de la función para evitar que se llame a SetNewColor()
+                Celebrate();
+                return;
             }
+        }
+        else
+        {
+            score -= 5;
+            incorrectSound.Play();
+            errors++;
         }
 
         if (!hasReachedFinish)
@@ -73,7 +131,15 @@ public class LevelCarManager : MonoBehaviour
             SetNewColor();
         }
     }
+    private IEnumerator ShowCorrectFeedback()
+    {
+        correctFeedback.SetActive(true);
 
+        yield return new WaitForSeconds(2f);
+
+        correctFeedback.SetActive(false);
+    }
+    #endregion
 
     void SetTargetPosition()
     {
@@ -103,5 +169,27 @@ public class LevelCarManager : MonoBehaviour
         _endPanel.SetActive(true);
         shouldMove = false;  // Asegura que el auto se detenga
         hasReachedFinish = true;  // Marca que ha llegado a la meta
+
+        // Mostrar el puntaje final
+        finalScoreText.text = "Puntaje Final: " + score.ToString();
+        errorsText.text = "Errores: " + errors.ToString();
+
+        // Verificar si se superó el récord
+        if (score > recordScore)
+        {
+            recordScore = score;
+            PlayerPrefs.SetInt("RecordScore", recordScore); // Guardar el nuevo récord
+            recordScoreText.text = "¡Nuevo Récord!: " + recordScore.ToString();
+        }
+        else { recordScoreText.text = "Récord: " + recordScore.ToString(); }
     }
+
+    public void ToggleMusic()
+    {
+        isMusicOn = !isMusicOn;
+        if (isMusicOn) { musicSource.Play(); }
+        else { musicSource.Pause(); }
+    }
+
+    public void BackMenu4() { SceneManager.LoadScene("4Menu"); }
 }
