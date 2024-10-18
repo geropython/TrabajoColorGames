@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: "Assets/Scripts/4a\xF1os/4Menu.unity"
     guid: 4d75efd82943180468ad02c510d9dccb
   - enabled: 1
-    path: "Assets/Scripts/5a\xF1os/5_Menu.unity"
+    path: "Assets/Scripts/5a\xF1os/5Menu.unity"
     guid: 363ff229052d058458d5b18de61a2598
   - enabled: 1
     path: "Assets/Scripts/5a\xF1os/Level1/5_Level1.unity"
