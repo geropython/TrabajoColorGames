@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Necesario para trabajar con imágenes de UI
 using TMPro; // Para manejar textos si usas TextMeshPro
 
@@ -16,8 +17,8 @@ public class CarCreatorManager : MonoBehaviour
     private bool isMusicOn = true;
 
     [SerializeField] private TextMeshProUGUI objectivesText; // Texto para mostrar los aciertos
-
     [SerializeField] private GameObject car;
+    [Header("Main Car")]
     public List<GameObject> wheelOptions;
     public List<GameObject> windowOptions;
     public List<GameObject> bodyColorDisplays;
@@ -28,6 +29,7 @@ public class CarCreatorManager : MonoBehaviour
     [SerializeField] private GameObject[] windowDisplays;
 
     // Objetivos
+    [Header("Objetivo")]
     [SerializeField] private GameObject[] objectiveBodyDisplays;
     [SerializeField] private GameObject[] objectiveWindowDisplays;
     [SerializeField] private GameObject[] objectiveWheelDisplays;
@@ -230,10 +232,13 @@ public class CarCreatorManager : MonoBehaviour
 
     public void CheckPlayerSelections()
     {
+        Debug.Log("Color cuerpo jugador: " + currentBodyColorIndex);
+        Debug.Log("Color cuerpo objetivo: " + targetBodyColorIndex);
         bool isCorrect = (currentWheelIndex == targetWheelIndex) && (currentWindowIndex == targetWindowIndex) && (currentBodyColorIndex == targetBodyColorIndex);
 
         if (isCorrect)
         {
+            Debug.Log("Correct selection!");
             StartCoroutine(ShowCorrectFeedback());
             score += 50;
             correctSound.Play();
@@ -241,13 +246,14 @@ public class CarCreatorManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Incorrect selection.");
             score -= 10;
             incorrectSound.Play();
             errors++;
         }
 
         scoreText.text = "Puntaje: " + score.ToString();
-        objectivesText.text = correctObjectives + "/" + maxCorrectObjectives; // Actualiza los aciertos
+        objectivesText.text = correctObjectives + "/" + maxCorrectObjectives;
 
         if (correctObjectives >= maxCorrectObjectives)
         {
@@ -275,6 +281,9 @@ public class CarCreatorManager : MonoBehaviour
             recordText.text = "Récord: " + previousRecord.ToString();
         }
     }
-
     #endregion
+    public void BackMenu()
+    {
+        SceneManager.LoadScene("4Menu");
+    }
 }
