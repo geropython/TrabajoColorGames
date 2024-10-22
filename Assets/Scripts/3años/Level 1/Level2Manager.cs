@@ -5,6 +5,13 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class LetraDibujo
+{
+    public string nombre;  // El nombre de la letra o palabra
+    public Sprite imagen;  // La imagen asociada a esa letra o palabra
+}
+
 public class Level2Manager : MonoBehaviour
 {
     #region Variables
@@ -12,7 +19,7 @@ public class Level2Manager : MonoBehaviour
     public Button[] botones; // Array de botones para letras
     [SerializeField] private GameObject _objetoPoints;
     [SerializeField] private GameObject _panelPuntaje;
-    
+
     [SerializeField] private CanvasGroup fadePanelCanvasGroup; // CanvasGroup del fadePanel
     [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
     [SerializeField] private float fadeDuration = 1f;
@@ -35,115 +42,121 @@ public class Level2Manager : MonoBehaviour
 
     private Dictionary<char, string> letrasPalabras = new Dictionary<char, string>()
     {
-        { 'A', "Avión" },
-        { 'B', "Barco" },
-        { 'C', "Camión" },
-        { 'D', "Delfín" }
+        { 'A', "Avión" }, { 'B', "Barco" }, { 'C', "Caballo" }, { 'D', "Delfín" },
+        { 'E', "Estrella" }, { 'F', "Flamenco" }, { 'G', "Gato" }, { 'H', "Hielo" },
+        { 'I', "Iguana" },{ 'J', "Jaguar" },{ 'K', "Koala" },{ 'L', "Leon" },
+        { 'M', "Medusa" },{ 'N', "Naranja" },{ 'Ñ', "Ñandu" },{ 'O', "Oso" },
+        { 'P', "Pato" },{ 'Q', "Queso" },{ 'R', "Rana" },{ 'S', "Serpiente" },
+        { 'U', "Uva" },{ 'V', "Vaca" },{ 'W', "Waffle" },
+        { 'X', "Xilófono" }, { 'Y', "Yate" }, { 'Z', "Zorro" }
     };
 
-    // Lista de los sprites asociados a cada letra
+    // Lista de los sprites asociados a cada letra (27 imágenes en total)
     public Sprite[] dibujos; // Arrastra tus imágenes aquí en el inspector
     #endregion
 
     void Start()
     {
-        // Actualiza el contador de oleadas en pantalla al iniciar el juego
         ActualizarContadorOleadas();
-
-        // Inicialmente desactivar el mainPanel
         mainPanel.SetActive(false);
-        // Iniciar el juego con un fade
         IniciarJuegoConFade();
-        
+
         _panelPuntaje.SetActive(false);
         audioSource = soundObject.GetComponent<AudioSource>();
 
         AsignarLetrasABotones(); // Inicializa el juego
     }
+
     void ActualizarContadorOleadas()
     {
-        // Actualiza el texto en pantalla con el formato "Oleada Actual / Total de Oleadas"
         contadorOleadasText.text = "Oleada: " + oleadaActual.ToString() + " / " + totalOleadas.ToString();
     }
 
     #region Fade Coroutines
-   void IniciarJuegoConFade()
+    void IniciarJuegoConFade()
     {
         StartCoroutine(FadeInGamePanel());
     }
 
     private IEnumerator FadeInGamePanel()
     {
-        // Activa el mainPanel y lo configura para que no se vea
         mainPanel.SetActive(true);
-        fadePanelCanvasGroup.alpha = 1; // Comienza con el panel de fade completamente negro
+        fadePanelCanvasGroup.alpha = 1;
 
-        // Fade out
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
             yield return null;
         }
 
-        fadePanelCanvasGroup.alpha = 0; // Asegurarse de que el alpha esté en 0
-        fadePanelCanvasGroup.gameObject.SetActive(false); // Desactivar el fadePanel
+        fadePanelCanvasGroup.alpha = 0;
+        fadePanelCanvasGroup.gameObject.SetActive(false);
     }
     #endregion
 
+    #region Letras
     void AsignarLetrasABotones()
     {
-        // Seleccionar una letra correcta aleatoriamente de las disponibles
+        // Suponiendo que tienes una lista de letras y una lista de dibujos
         List<char> letrasDisponibles = new List<char>(letrasPalabras.Keys);
         letraCorrecta = letrasDisponibles[Random.Range(0, letrasDisponibles.Count)];
-        letraText.text = letraCorrecta.ToString(); // Mostrar la letra en pantalla
+        letraText.text = letraCorrecta.ToString();
 
-        // Crear una lista temporal de letras para los botones
         List<char> letrasBotones = new List<char>(letrasDisponibles);
-        letrasBotones.Remove(letraCorrecta); // Quitar la letra correcta
-
-        // Mezclar las letras y elegir un botón para la letra correcta
+        letrasBotones.Remove(letraCorrecta);
         letrasBotones = MezclarLista(letrasBotones);
-        int botonCorrecto = Random.Range(0, botones.Length); // Elegir un botón aleatoriamente para la letra correcta
+        letrasBotones = letrasBotones.GetRange(0, 3); // Seleccionar 3 letras incorrectas
+        letrasBotones.Add(letraCorrecta); // Añadir la correcta
+        letrasBotones = MezclarLista(letrasBotones); // Mezclar todas las letras
 
         for (int i = 0; i < botones.Length; i++)
         {
-            if (i == botonCorrecto)
+            if (i < letrasBotones.Count) // Evitar que se salga del rango
             {
-                // Asignar la palabra correcta al botón (por ejemplo, "Avión")
-                botones[i].GetComponentInChildren<TextMeshProUGUI>().text = letrasPalabras[letraCorrecta]; // Mostrar el nombre de la palabra
-                botones[i].onClick.RemoveAllListeners();
-                botones[i].onClick.AddListener(() => BotonCorrecto(letraCorrecta)); // Pasar la letra correcta
+                char letra = letrasBotones[i];
 
-                // Cambiar el sprite correspondiente a la letra correcta
-                botones[i].GetComponent<Image>().sprite = GetSpriteForLetter(letraCorrecta);
-            }
-            else
-            {
-                // Asignar una letra incorrecta aleatoria
-                char letraIncorrecta = letrasBotones[i % letrasBotones.Count]; // Asegurarse de no exceder el tamaño de la lista
-                botones[i].GetComponentInChildren<TextMeshProUGUI>().text = letrasPalabras[letraIncorrecta]; // Mostrar el nombre de la palabra
-                botones[i].onClick.RemoveAllListeners();
-                botones[i].onClick.AddListener(() => BotonIncorrecto());
+                // Asignar el texto correcto del nombre
+                botones[i].GetComponentInChildren<TextMeshProUGUI>().text = letrasPalabras[letra];
+                
+                // Asignar el sprite correcto usando el método GetSpriteForLetter
+                botones[i].GetComponent<Image>().sprite = GetSpriteForLetter(letra);
 
-                // Cambiar el sprite correspondiente a la letra incorrecta
-                botones[i].GetComponent<Image>().sprite = GetSpriteForLetter(letraIncorrecta);
+                botones[i].onClick.RemoveAllListeners();
+                if (letra == letraCorrecta)
+                {
+                    botones[i].onClick.AddListener(() => BotonCorrecto(letra));
+                }
+                else
+                {
+                    botones[i].onClick.AddListener(BotonIncorrecto);
+                }
             }
         }
     }
 
     private Sprite GetSpriteForLetter(char letra)
     {
-        switch (letra)
+        // Aquí tenemos una lista de todas las letras en el mismo orden en el que están los sprites
+        string letrasOrdenadas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        
+        // Encontramos el índice de la letra en la cadena
+        int index = letrasOrdenadas.IndexOf(letra);
+
+        // Verificamos que el índice no esté fuera de los límites del array de dibujos
+        if (index >= 0 && index < dibujos.Length)
         {
-            case 'A': return dibujos[0]; // Avión
-            case 'B': return dibujos[1]; // Barco
-            case 'C': return dibujos[2]; // Camión
-            case 'D': return dibujos[3]; // Delfín
-            default: return null; // Retornar null si no se encuentra la letra
+            return dibujos[index]; // Devolver el sprite correspondiente
+        }
+        else
+        {
+            Debug.LogError("Índice fuera de rango para la letra: " + letra);
+            return null; // Retorna null si hay un error
         }
     }
+    #endregion
+
 
     private void MostrarPanelPuntaje()
     {
@@ -164,36 +177,40 @@ public class Level2Manager : MonoBehaviour
     #region Botones
     void BotonCorrecto(char letra)
     {
-        if (letra == letraCorrecta) // Verificar que la letra corresponde
+        if (letra == letraCorrecta)
         {
-            puntajeTotal += 10; // Sumar puntaje y aciertos
+            puntajeTotal += 10;
             aciertos++;
             if (oleadaActual < totalOleadas)
             {
-                oleadaActual++; // Avanza a la siguiente oleada
-                ActualizarContadorOleadas(); // Actualizar el contador de oleadas en pantalla
-                AsignarLetrasABotones(); // Cambiar las letras y volver a empezar
+                oleadaActual++;
+                ActualizarContadorOleadas();
+                AsignarLetrasABotones();
             }
             else
             {
-                // Si todas las oleadas han sido completadas, mostrar el panel de puntaje
                 MostrarPanelPuntaje();
-                DesactivarBotones(); // Desactiva los botones para que no se puedan hacer más clics
+                DesactivarBotones();
             }
 
             StartCoroutine(MostrarObjetoTemporalmente(_objetoPoints, 0.5f));
             audioSource.PlayOneShot(correctSound);
-            AsignarLetrasABotones(); // Reiniciar letras y botones
         }
     }
 
     void BotonIncorrecto()
     {
-        errores++; // Incrementar errores
+        errores++;
         audioSource.PlayOneShot(incorrectSound);
     }
 
-    private void DesactivarBotones() { foreach (Button boton in botones) {boton.interactable = false; } }
+    private void DesactivarBotones()
+    {
+        foreach (Button boton in botones)
+        {
+            boton.interactable = false;
+        }
+    }
     #endregion
 
     private IEnumerator MostrarObjetoTemporalmente(GameObject objeto, float duracion)
@@ -215,7 +232,11 @@ public class Level2Manager : MonoBehaviour
         return lista;
     }
 
-    public void BackMenu() { SceneManager.LoadScene("MainMenu"); }
+    #region Extra
+    public void BackMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void ToggleMusic()
     {
@@ -229,4 +250,5 @@ public class Level2Manager : MonoBehaviour
             musicSource.Pause();
         }
     }
+    #endregion
 }

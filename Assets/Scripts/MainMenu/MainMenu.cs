@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject[] _shadows; // Lugares donde aparecerán las medallas
     [SerializeField] private GameObject[] _medals;  // Medallas a mostrar (deben tener la misma cantidad que _shadows)
-    [SerializeField] private Button _diplomaSupremoButton; // Botón para el Diploma Supremo
     [SerializeField] private CanvasGroup _fadeOutCanvasGroup; // Para controlar la opacidad de la intro
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private GameObject _fadeOutPanel;
@@ -27,9 +26,6 @@ public class MainMenu : MonoBehaviour
         {
             _medals[i].SetActive(false); // Ocultar todas las medallas inicialmente
         }
-
-        // Desactivar el botón de Diploma Supremo
-        _diplomaSupremoButton.interactable = false;
 
         // Cargar progreso y actualizar UI
         LoadProgress();
@@ -78,27 +74,21 @@ public class MainMenu : MonoBehaviour
                 medalsObtained++;
             }
         }
-
-        // Activar el botón del Diploma Supremo si todas las medallas están obtenidas
-        if (medalsObtained == _medals.Length)
-        {
-            _diplomaSupremoButton.interactable = true; // Activar el botón si las 3 medallas están obtenidas
-        }
     }
 
     public void TresAños_Scene()
     {
-        SceneManager.LoadScene("3 años"); // Cargar la escena de "3 años"
+        SceneManager.LoadScene("3Menu"); // Cargar la escena de "3 años"
     }
 
     public void CuatroAños_Scene()
     {
-        SceneManager.LoadScene("4 años"); // Cargar la escena de "4 años"
+        SceneManager.LoadScene("4Menu"); // Cargar la escena de "4 años"
     }
 
     public void CincoAños_Scene()
     {
-        SceneManager.LoadScene("5 años"); // Cargar la escena de "5 años"
+        SceneManager.LoadScene("5Menu"); // Cargar la escena de "5 años"
     }
 
     public void Quit()

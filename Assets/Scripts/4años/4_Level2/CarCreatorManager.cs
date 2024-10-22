@@ -57,7 +57,6 @@ public class CarCreatorManager : MonoBehaviour
 
     private bool wheelTouched = false;
     private bool windowTouched = false;
-    private bool bodyColorTouched = false;
 
     #endregion
     #region Fade
@@ -159,7 +158,6 @@ public class CarCreatorManager : MonoBehaviour
 
         bodyColorDisplays[index].SetActive(true);
         currentBodyColorIndex = index; // Guardar la selección de color
-        bodyColorTouched = true;
         CheckRecentlyTouched();
     }
     #endregion
@@ -285,5 +283,17 @@ public class CarCreatorManager : MonoBehaviour
     public void BackMenu()
     {
         SceneManager.LoadScene("4Menu");
+    }
+    public void ToggleMusic()
+    {
+        isMusicOn = !isMusicOn;
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Pause();
+        }
     }
 }
