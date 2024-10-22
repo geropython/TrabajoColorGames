@@ -65,15 +65,18 @@ public class MainMenu : MonoBehaviour
     {
         int medalsObtained = 0;
 
-        // Revisar si cada medalla ha sido obtenida
         for (int i = 0; i < _medals.Length; i++)
         {
-            if (PlayerPrefs.GetInt($"Medal_Age{i + 3}", 0) == 1) // Revisamos si la medalla del "i" es obtenida
+            int medalStatus = PlayerPrefs.GetInt($"Medal_Age{i + 3}", 0);
+            Debug.Log($"Medal_Age{i + 3} status: {medalStatus}"); // Verifica el estado de la medalla
+
+            if (medalStatus == 1)
             {
-                _medals[i].SetActive(true);  // Mostramos la medalla correspondiente
+                _medals[i].SetActive(true);
                 medalsObtained++;
             }
         }
+        Debug.Log($"Total Medals Obtained: {medalsObtained}"); // Verifica cuántas medallas se han obtenido
     }
 
     public void TresAños_Scene()
