@@ -154,7 +154,7 @@ public class Words1Script : MonoBehaviour
 
     private IEnumerator FeedbackCoroutine()
     {
-        yield return new WaitForSeconds(2); // Esperar 2 segundos
+        yield return new WaitForSeconds(1); // Esperar 2 segundos
         correctFeedback.SetActive(false); // Desactivar el feedback correcto
         StartRound(); // Iniciar la siguiente ronda
     }
