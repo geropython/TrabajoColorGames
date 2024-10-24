@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PageManager : MonoBehaviour
@@ -31,5 +32,9 @@ public class PageManager : MonoBehaviour
         _pagina1.SetActive(false);
         _pagina2.SetActive(false);
         _pagina3.SetActive(true);
+    }
+    public void BackMenu5()
+    {
+        SceneManager.LoadScene("5Menu");
     }
 }

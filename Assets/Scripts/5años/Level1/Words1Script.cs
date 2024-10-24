@@ -15,8 +15,10 @@ public class Words1Script : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI errorsText;
+    [SerializeField] private TextMeshProUGUI recordText;
+
     [SerializeField] private TextMeshProUGUI rondaActual;
-    
     [SerializeField] private TextMeshProUGUI palabraDisplay;
 
     [SerializeField] private GameObject endPanel;
@@ -30,19 +32,25 @@ public class Words1Script : MonoBehaviour
     private int score = 0;
     private string currentWord;
     private int revealedLetters = 1;
+    private int mistakes = 0;
+    private int record = 0;
     private Coroutine revealCoroutine;
 
     [SerializeField] private AudioSource musicSource; 
     private bool isMusicOn = true;
     #endregion
-
+    
+    #region Start/Update
     void Start()
     {
+        record = PlayerPrefs.GetInt("Record", 0);
         StartFade();
         // Iniciar el juego
         endPanel.SetActive(false);
         StartRound();
     }
+    #endregion
+    
     #region Fade
     void StartFade()
     {
@@ -118,7 +126,9 @@ public class Words1Script : MonoBehaviour
         revealedWord += new string('_', remainingLetters); // Rellenar con guiones bajos las letras que faltan
         return revealedWord;
     }
+    #endregion
 
+    #region Checking
     public void CheckAnswer()
     {
         string playerInput = inputField.text.Trim(); // Eliminar espacios adicionales
@@ -146,11 +156,12 @@ public class Words1Script : MonoBehaviour
         else//Respuesta incorrecta
         {
             score -= 5;
+            mistakes++; // Incrementar el conteo de errores
             scoreText.text = "Puntos: " + score;
         }
+        
     }
-
-
+    #endregion
 
     private IEnumerator FeedbackCoroutine()
     {
@@ -158,8 +169,7 @@ public class Words1Script : MonoBehaviour
         correctFeedback.SetActive(false); // Desactivar el feedback correcto
         StartRound(); // Iniciar la siguiente ronda
     }
-    #endregion
-
+    #region EndGame
     void EndGame()
     {
         // Detener el revealCoroutine cuando termine el juego
@@ -167,11 +177,23 @@ public class Words1Script : MonoBehaviour
         {
             StopCoroutine(revealCoroutine);
         }
-        
-        // Mostrar el panel final y la puntuación final
+
+        // Actualizar récord si es necesario
+        if (score > record)
+        {
+            record = score;
+            PlayerPrefs.SetInt("Record", record); // Guardar el récord
+        }
+
+        // Mostrar el panel final
         endPanel.SetActive(true);
-        endPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Puntuación Final: " + score; // Mostrar puntuación final
+
+        // Asignar la puntuación final, errores y récord en los textos correspondientes
+        endPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Puntuación Final: " + score;
+        errorsText.text = "Errores: " + mistakes; // Mostrar los errores
+        recordText.text = "Récord: " + record;   // Mostrar el récord
     }
+
 
     public void BackMenu() { SceneManager.LoadScene("5Menu"); }
     public void ToggleMusic()
@@ -186,4 +208,5 @@ public class Words1Script : MonoBehaviour
             musicSource.Pause();
         }
     }
+    #endregion
 }

@@ -24,9 +24,12 @@ public class Word2Script : MonoBehaviour
     [SerializeField] private TextMeshProUGUI testTimerText;
     private float testTimer = 0f;
     [SerializeField] private Transform letrasContainer;
+    [SerializeField] private TMP_FontAsset fuenteLetras;
+
     [SerializeField] private GameObject letraButtonPrefab;
     [SerializeField] private Button pistaButton;
     [SerializeField] private GameObject feedbackObject;
+    [SerializeField] private TextMeshProUGUI rondaTexto;
 
     private int rondaActual = 0;
     private int puntos = 0;
@@ -57,7 +60,7 @@ public class Word2Script : MonoBehaviour
     private void Update()
     {
         testTimer += Time.deltaTime;
-        testTimerText.text = "Tiempo: " + testTimer.ToString("F2") + " s";
+        testTimerText.text = testTimer.ToString("F2") + " s";
         if (!juegoTerminado)
         {
             tiempoRonda += Time.deltaTime;
@@ -92,7 +95,7 @@ public class Word2Script : MonoBehaviour
 
     private IEnumerator EsconderPista()
     {
-        yield return new WaitForSeconds(10f); // Esperar 10 segundos
+        yield return new WaitForSeconds(5f); // Esperar 5 segundos
         pistaImagen.gameObject.SetActive(false); // Ocultar la imagen de la pista
     }
     #endregion
@@ -112,6 +115,9 @@ public class Word2Script : MonoBehaviour
             // Actualizar visualización de las letras
             ActualizarVisualizacionLetras();
             ActualizarPalabraDisplay();
+
+            // Actualizar el texto de la ronda
+            rondaTexto.text = " " + (rondaActual + 1) + "/" + palabras.Length;
         }
         else
         {
@@ -134,7 +140,6 @@ public class Word2Script : MonoBehaviour
         return letras;
     }
 
-    // Actualizar la visualización de las letras en botones
     private void ActualizarVisualizacionLetras()
     {
         foreach (Transform child in letrasContainer)
@@ -147,7 +152,15 @@ public class Word2Script : MonoBehaviour
         {
             GameObject newButton = Instantiate(letraButtonPrefab, letrasContainer);
             TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            // Asignar el texto de la letra
             buttonText.text = letra;
+
+            // Asignar la fuente (Asegúrate de que 'fuenteLetras' esté asignada en el inspector)
+            buttonText.font = fuenteLetras;
+
+            // Ajustar el tamaño de la letra
+            buttonText.fontSize = 125; // Ajusta el valor según el tamaño que desees
 
             // Asignar evento al botón
             Button button = newButton.GetComponent<Button>();
@@ -165,7 +178,19 @@ public class Word2Script : MonoBehaviour
             ActualizarPalabraDisplay();
         }
     }
+    private void RestablecerLetras()
+    {
+        // Volver a agregar las letras seleccionadas a letras disponibles
+        letrasDisponibles.AddRange(letrasSeleccionadas); // Agregar letras seleccionadas de vuelta
+        letrasSeleccionadas.Clear(); // Limpiar las letras seleccionadas
 
+        // Actualizar la visualización de las letras en los botones
+        ActualizarVisualizacionLetras(); 
+        ActualizarPalabraDisplay(); // Actualizar el display de la palabra
+    }
+    #endregion
+
+    #region Palabra
     private void ActualizarPalabraDisplay()
     {
         palabraDisplay.text = string.Join("", letrasSeleccionadas);
@@ -194,18 +219,10 @@ public class Word2Script : MonoBehaviour
             RestablecerLetras();
         }
     }
-    private void RestablecerLetras()
-    {
-        // Volver a agregar las letras seleccionadas a letras disponibles
-        letrasDisponibles.AddRange(letrasSeleccionadas); // Agregar letras seleccionadas de vuelta
-        letrasSeleccionadas.Clear(); // Limpiar las letras seleccionadas
-
-        // Actualizar la visualización de las letras en los botones
-        ActualizarVisualizacionLetras(); 
-        ActualizarPalabraDisplay(); // Actualizar el display de la palabra
-    }
     #endregion
 
+  
+    #region EndGame
     private IEnumerator DesactivarFeedback()
     {
         yield return new WaitForSeconds(2f); // Espera 2 segundos
@@ -216,8 +233,8 @@ public class Word2Script : MonoBehaviour
     {
         juegoTerminado = true; // Marcar el juego como terminado
         panelFinal.SetActive(true); // Mostrar el panel final
-        puntosFinalTexto.text = "Puntos Finales: " + puntos;
-        tiempoFinalTexto.text = "Tiempo Total: " + tiempoTotal.ToString("F2") + " s";
+        puntosFinalTexto.text = "Puntos: " + puntos;
+        tiempoFinalTexto.text = "Tiempo: " + tiempoTotal.ToString("F2") + " s";
 
         // Guardar y mostrar el récord
         float record = PlayerPrefs.GetFloat("Record", float.MaxValue);
@@ -242,4 +259,5 @@ public class Word2Script : MonoBehaviour
             musicSource.Pause();
         }
     }
+    #endregion
 }

@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
     {
         // Esperar 3 segundos
         yield return new WaitForSeconds(3f);
-        yield return StartCoroutine(FadeOut(_fadeOutCanvasGroup, 3f));  // Desvanecer la intro
+        yield return StartCoroutine(FadeOut(_fadeOutCanvasGroup, 2f));  // Desvanecer la intro
 
         // Una vez que la intro se desvanezca completamente, desactivar el panel de intro
         _fadeOutPanel.SetActive(false);
