@@ -15,7 +15,7 @@ public class MenuTresScript : MonoBehaviour
     void Awake()
     {
         // Asegúrate de que solo haya una instancia del AudioSource
-        if (FindObjectsOfType<MenuTresScript>().Length > 1)
+       if (FindObjectsByType<MenuTresScript>(FindObjectsSortMode.None).Length > 1)
         {
             Destroy(gameObject);
         }
@@ -26,7 +26,7 @@ public class MenuTresScript : MonoBehaviour
     }
      public void ResetProgress()
     {
-        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        SceneProgress progress = FindAnyObjectByType<SceneProgress>();
         if (progress != null)
         {
             progress.ResetProgress(); // Llama al método para reiniciar el progreso

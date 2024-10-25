@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnResetProgress()
     {
-        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        SceneProgress progress = FindAnyObjectByType<SceneProgress>();
         if (progress != null)
         {
             progress.ResetProgress();

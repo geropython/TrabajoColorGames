@@ -78,7 +78,7 @@ public class Etapa5Script : MonoBehaviour
     }
     public void ResetProgress()
     {
-        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        SceneProgress progress = FindAnyObjectByType<SceneProgress>();
         if (progress != null)
         {
             progress.ResetProgress(); // Llama al método para reiniciar el progreso

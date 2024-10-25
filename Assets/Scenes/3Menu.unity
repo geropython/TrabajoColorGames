@@ -2855,6 +2855,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -387
       objectReference: {fileID: 0}
+    - target: {fileID: 7321597185756712535, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
+      propertyPath: m_Name
+      value: Home
+      objectReference: {fileID: 0}
     - target: {fileID: 8720751122138622231, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2906,9 +2910,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5308082848297440872, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1156938071412732686}
-    - targetCorrespondingSourceObject: {fileID: 5308082848297440872, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1156938071412732690}
     - targetCorrespondingSourceObject: {fileID: 8720751122138622231, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1356036989}
@@ -2972,18 +2973,6 @@ MonoBehaviour:
   mainPanel: {fileID: 1356036985}
   fadeDuration: 1
   musicSource: {fileID: 1156938071412732678}
---- !u!114 &1156938071412732690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006385721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ad2994b70308e45bece035c89b5cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

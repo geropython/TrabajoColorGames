@@ -43,7 +43,7 @@ public class CuatroAños : MonoBehaviour
     #endregion
     public void ResetProgress()
     {
-        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        SceneProgress progress = FindAnyObjectByType<SceneProgress>();
         if (progress != null)
         {
             progress.ResetProgress(); // Llama al método para reiniciar el progreso
