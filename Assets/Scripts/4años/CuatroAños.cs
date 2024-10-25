@@ -79,6 +79,7 @@ public class CuatroAños : MonoBehaviour
 
     public void BackMenu()
     {
+        musicSource.Stop();
         SceneManager.LoadScene("MainMenu");
     }
 }

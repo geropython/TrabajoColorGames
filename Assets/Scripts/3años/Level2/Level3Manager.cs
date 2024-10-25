@@ -216,7 +216,12 @@ public class Level3Manager : MonoBehaviour
         return lista;
     }
 
-    public void BackMenu(){ SceneManager.LoadScene("3Menu"); }
+    public void BackMenu()
+    { 
+        musicSource.Stop();
+        SceneManager.LoadScene("3Menu"); 
+    }
+    
     public void Replay(){ SceneManager.LoadScene("Level 2"); }
 
     public void ToggleMusic()

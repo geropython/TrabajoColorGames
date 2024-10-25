@@ -3249,11 +3249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4cced1b503fe24a83c1d06d4726874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _age: 4
-  _totalLevels: 2
+  _stage: 0
   _medal: {fileID: 857369936}
   _diplomaButton: {fileID: 313631922}
-  _diploma: {fileID: 1046458112}
+  levelsToComplete: 2
 --- !u!114 &1156938071412732691
 MonoBehaviour:
   m_ObjectHideFlags: 0

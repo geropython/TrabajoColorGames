@@ -282,17 +282,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454670130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.98941326, y: 0.98941326, z: 0.98941326}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 242170719}
-  m_Father: {fileID: 699143216730504417}
+  m_Father: {fileID: 699143216730504410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -643}
+  m_AnchoredPosition: {x: -7.9152765, y: -636.19275}
   m_SizeDelta: {x: 550, y: 355.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &454670132
@@ -1538,6 +1538,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3970707087338164760, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004280573595235889, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 4023867853532228682, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1561,6 +1569,10 @@ PrefabInstance:
     - target: {fileID: 4923637915696417614, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947231297570273330, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 5180518880381201437, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1658,6 +1670,10 @@ PrefabInstance:
       propertyPath: 'botones.Array.data[3]'
       value: 
       objectReference: {fileID: 699143216730504413}
+    - target: {fileID: 6318137305411477150, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 6720326304208750654, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1790,6 +1806,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8893513245116870546, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects:
@@ -1798,15 +1818,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1950879544076921757, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1295938296}
-    - targetCorrespondingSourceObject: {fileID: 1950879544076921757, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 454670131}
     - targetCorrespondingSourceObject: {fileID: 2241692941364272695, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       insertIndex: 3
       addedObject: {fileID: 1963715033}
     - targetCorrespondingSourceObject: {fileID: 2241692941364272695, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       insertIndex: -1
       addedObject: {fileID: 917934608}
+    - targetCorrespondingSourceObject: {fileID: 2241692941364272695, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 454670131}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3198119971946111928, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       insertIndex: -1

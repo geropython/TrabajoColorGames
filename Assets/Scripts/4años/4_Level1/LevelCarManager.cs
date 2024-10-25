@@ -191,5 +191,9 @@ public class LevelCarManager : MonoBehaviour
         else { musicSource.Pause(); }
     }
 
-    public void BackMenu4() { SceneManager.LoadScene("4Menu"); }
+    public void BackMenu4()
+    {
+        musicSource.Stop(); 
+        SceneManager.LoadScene("4Menu"); 
+    }
 }

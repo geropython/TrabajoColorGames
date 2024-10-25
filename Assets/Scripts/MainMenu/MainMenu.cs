@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _shadows; // Lugares donde aparecerán las medallas
-    [SerializeField] private GameObject[] _medals;  // Medallas a mostrar (deben tener la misma cantidad que _shadows)
     [SerializeField] private CanvasGroup _fadeOutCanvasGroup; // Para controlar la opacidad de la intro
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private GameObject _fadeOutPanel;
+    [SerializeField] private Animator Etapa3ButtonAnimator;
+    [SerializeField] private Animator Etapa4ButtonAnimator;
+    [SerializeField] private Animator Etapa5ButtonAnimator;
 
     private void Start()
     {
@@ -20,16 +21,8 @@ public class MainMenu : MonoBehaviour
 
         // Iniciamos la corutina para esperar 3 segundos y luego hacer el parpadeo
         StartCoroutine(ShowMenuAfterIntro());
-
-        // Desactivar las medallas al inicio
-        for (int i = 0; i < _medals.Length; i++)
-        {
-            _medals[i].SetActive(false); // Ocultar todas las medallas inicialmente
-        }
-
-        // Cargar progreso y actualizar UI
-        LoadProgress();
     }
+
     IEnumerator ShowMenuAfterIntro()
     {
         // Esperar 3 segundos
@@ -59,39 +52,31 @@ public class MainMenu : MonoBehaviour
         canvasGroup.alpha = 0;
 
     }
-
-    // Método para cargar el progreso guardado y actualizar las medallas y el botón del Diploma Supremo
-    private void LoadProgress()
+    
+    IEnumerator PlayButtonAnimationAndLoadScene(Animator buttonAnimator, string sceneName)
     {
-        int medalsObtained = 0;
+        buttonAnimator.ResetTrigger("Click"); // Asegurarse de que no hay triggers previos
+        buttonAnimator.SetTrigger("Click"); // Reproduce la animación del botón
+        yield return new WaitForSeconds(3f);
 
-        for (int i = 0; i < _medals.Length; i++)
-        {
-            int medalStatus = PlayerPrefs.GetInt($"Medal_Age{i + 3}", 0);
-            Debug.Log($"Medal_Age{i + 3} status: {medalStatus}"); // Verifica el estado de la medalla
-
-            if (medalStatus == 1)
-            {
-                _medals[i].SetActive(true);
-                medalsObtained++;
-            }
-        }
-        Debug.Log($"Total Medals Obtained: {medalsObtained}"); // Verifica cuántas medallas se han obtenido
+        SceneManager.LoadScene(sceneName); // Cambia a la escena deseada
     }
 
-    public void TresAños_Scene()
+    public void Etapa3()
     {
-        SceneManager.LoadScene("3Menu"); // Cargar la escena de "3 años"
+        // Iniciar la corrutina para el botón de nivel 1 solo cuando el usuario haga clic
+        StartCoroutine(PlayButtonAnimationAndLoadScene(Etapa3ButtonAnimator, "3Menu"));
     }
 
-    public void CuatroAños_Scene()
+    public void Etapa4()
     {
-        SceneManager.LoadScene("4Menu"); // Cargar la escena de "4 años"
+        // Iniciar la corrutina para el botón de nivel 2 solo cuando el usuario haga clic
+        StartCoroutine(PlayButtonAnimationAndLoadScene(Etapa4ButtonAnimator, "4Menu"));
     }
-
-    public void CincoAños_Scene()
+    public void Etapa5()
     {
-        SceneManager.LoadScene("5Menu"); // Cargar la escena de "5 años"
+        // Iniciar la corrutina para el botón de nivel 2 solo cuando el usuario haga clic
+        StartCoroutine(PlayButtonAnimationAndLoadScene(Etapa5ButtonAnimator, "5Menu"));
     }
 
     public void Quit()

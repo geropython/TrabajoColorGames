@@ -76,6 +76,10 @@ public class Etapa5Script : MonoBehaviour
             musicSource.Pause();
         }
     }
-    public void BackMenu() { SceneManager.LoadScene("MainMenu"); }
+    public void BackMenu()
+    {
+        musicSource.Stop(); 
+        SceneManager.LoadScene("MainMenu"); 
+    }
     
 }

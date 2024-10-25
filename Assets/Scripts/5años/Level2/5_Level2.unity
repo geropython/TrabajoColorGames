@@ -3049,22 +3049,12 @@ MonoBehaviour:
   - Delfin
   - Estrella
   - Barco
-  - Hielo
-  - Gato
-  - Pato
-  - Oso
-  - Leon
   pistasImagenes:
   - {fileID: 21300000, guid: 5b22f004e0daefd4eb72dd32a0a4c85d, type: 3}
   - {fileID: 21300000, guid: ec53d3f18b978de47b5f3025fbb6ea86, type: 3}
   - {fileID: 21300000, guid: 1cb5cfdfd5d389d489ba12399001b1eb, type: 3}
   - {fileID: 21300000, guid: 09a4001d7b75c514daca7935c8db3488, type: 3}
   - {fileID: 21300000, guid: 6c209e9250ae6da43b143ad17d4b34bb, type: 3}
-  - {fileID: 21300000, guid: b9255e17cd517c54186f45aab6457b00, type: 3}
-  - {fileID: 21300000, guid: d9ce927551cfd3b42986b7ba4d66cc4e, type: 3}
-  - {fileID: 21300000, guid: 366b3f0eb8ee9554488164c99c1f22cc, type: 3}
-  - {fileID: 21300000, guid: 4c594934685a2ed4f9ac30772103d5af, type: 3}
-  - {fileID: 21300000, guid: 955d2f46d3d22b44c8aeafd7c3f02df2, type: 3}
   fadePanelCanvasGroup: {fileID: 2016857062}
   fadeDuration: 2
   puntosTexto: {fileID: 1043416148}
@@ -3989,11 +3979,11 @@ RectTransform:
   - {fileID: 2006349011}
   - {fileID: 1045504703}
   - {fileID: 2039140007}
-  - {fileID: 857183062}
   - {fileID: 1310552704}
   - {fileID: 1493143613}
   - {fileID: 1329176838}
   - {fileID: 366012444}
+  - {fileID: 857183062}
   m_Father: {fileID: 1822238460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

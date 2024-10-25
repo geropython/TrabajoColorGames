@@ -235,7 +235,8 @@ public class Level2Manager : MonoBehaviour
     #region Extra
     public void BackMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        musicSource.Stop();
+        SceneManager.LoadScene("3Menu");
     }
 
     public void ToggleMusic()

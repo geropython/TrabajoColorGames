@@ -282,6 +282,7 @@ public class CarCreatorManager : MonoBehaviour
     #endregion
     public void BackMenu()
     {
+        musicSource.Stop();
         SceneManager.LoadScene("4Menu");
     }
     public void ToggleMusic()
