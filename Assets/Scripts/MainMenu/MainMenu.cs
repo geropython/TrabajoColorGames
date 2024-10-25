@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _shadows; // Lugares donde aparecerán las medallas
-    [SerializeField] private GameObject[] _medals;  // Medallas a mostrar (deben tener la misma cantidad que _shadows)
     [SerializeField] private CanvasGroup _fadeOutCanvasGroup; // Para controlar la opacidad de la intro
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private GameObject _fadeOutPanel;
@@ -21,14 +19,6 @@ public class MainMenu : MonoBehaviour
         // Iniciamos la corutina para esperar 3 segundos y luego hacer el parpadeo
         StartCoroutine(ShowMenuAfterIntro());
 
-        // Desactivar las medallas al inicio
-        for (int i = 0; i < _medals.Length; i++)
-        {
-            _medals[i].SetActive(false); // Ocultar todas las medallas inicialmente
-        }
-
-        // Cargar progreso y actualizar UI
-        LoadProgress();
     }
     IEnumerator ShowMenuAfterIntro()
     {
@@ -60,36 +50,18 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    // Método para cargar el progreso guardado y actualizar las medallas y el botón del Diploma Supremo
-    private void LoadProgress()
-    {
-        int medalsObtained = 0;
 
-        for (int i = 0; i < _medals.Length; i++)
-        {
-            int medalStatus = PlayerPrefs.GetInt($"Medal_Age{i + 3}", 0);
-            Debug.Log($"Medal_Age{i + 3} status: {medalStatus}"); // Verifica el estado de la medalla
-
-            if (medalStatus == 1)
-            {
-                _medals[i].SetActive(true);
-                medalsObtained++;
-            }
-        }
-        Debug.Log($"Total Medals Obtained: {medalsObtained}"); // Verifica cuántas medallas se han obtenido
-    }
-
-    public void TresAños_Scene()
+    public void Etapa3()
     {
         SceneManager.LoadScene("3Menu"); // Cargar la escena de "3 años"
     }
 
-    public void CuatroAños_Scene()
+    public void Etapa4()
     {
         SceneManager.LoadScene("4Menu"); // Cargar la escena de "4 años"
     }
 
-    public void CincoAños_Scene()
+    public void Etapa5()
     {
         SceneManager.LoadScene("5Menu"); // Cargar la escena de "5 años"
     }
