@@ -41,6 +41,18 @@ public class CuatroAños : MonoBehaviour
         fadePanelCanvasGroup.gameObject.SetActive(false);
     }
     #endregion
+    public void ResetProgress()
+    {
+        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        if (progress != null)
+        {
+            progress.ResetProgress(); // Llama al método para reiniciar el progreso
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró SceneProgress en la escena.");
+        }
+    }
 
     // Corrutina para reproducir la animación y luego cambiar de escena
     IEnumerator PlayButtonAnimationAndLoadScene(Animator buttonAnimator, string sceneName)
@@ -79,6 +91,7 @@ public class CuatroAños : MonoBehaviour
 
     public void BackMenu()
     {
+        ResetProgress();
         musicSource.Stop();
         SceneManager.LoadScene("MainMenu");
     }

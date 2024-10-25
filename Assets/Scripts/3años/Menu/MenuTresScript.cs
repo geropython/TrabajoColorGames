@@ -8,15 +8,44 @@ public class MenuTresScript : MonoBehaviour
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private CanvasGroup fadePanelCanvasGroup; // CanvasGroup del fadePanel
     [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
-    [SerializeField] private float fadeDuration = 1f;  // Para controlar la opacidad del menú
+    [SerializeField] private float fadeDuration = 1f; // Para controlar la opacidad del menú
     [SerializeField] private AudioSource musicSource;
     private bool isMusicOn = true; 
 
+    void Awake()
+    {
+        // Asegúrate de que solo haya una instancia del AudioSource
+        if (FindObjectsOfType<MenuTresScript>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+     public void ResetProgress()
+    {
+        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        if (progress != null)
+        {
+            progress.ResetProgress(); // Llama al método para reiniciar el progreso
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró SceneProgress en la escena.");
+        }
+    }
+
     void Start()
     {
-        // Al iniciar, activamos la intro y el menú pero el menú es invisible
         _menuPanel.SetActive(true);
         IniciarJuegoConFade();
+
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
     }
 
     #region Fade Coroutines
@@ -42,16 +71,21 @@ public class MenuTresScript : MonoBehaviour
         fadePanelCanvasGroup.gameObject.SetActive(false);
     }
     #endregion
+
     #region Transition
-    
-    // public void OpenWebPage() { Application.OpenURL("https://sites.google.com/view/colorsgames/inicio?authuser=0"); }
-    public void Abecedario() { musicSource.Stop(); SceneManager.LoadScene("Abecedario"); }
-    public void Album() { musicSource.Stop(); SceneManager.LoadScene("Album"); }
-    public void Nivel1() { musicSource.Stop(); SceneManager.LoadScene("Nivel 1"); }
-    public void Nivel2() { musicSource.Stop(); SceneManager.LoadScene("Nivel 2"); }
-    public void BackMenu(){ musicSource.Stop(); SceneManager.LoadScene("MainMenu"); }
-    
+    public void LoadScene(string sceneName)
+    {
+        musicSource.Stop();
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void Abecedario() { LoadScene("Abecedario"); }
+    public void Album() { LoadScene("Album"); }
+    public void Nivel1() { LoadScene("Nivel 1"); }
+    public void Nivel2() { LoadScene("Nivel 2"); }
+    public void BackMenu() { ResetProgress(); LoadScene("MainMenu"); }
     #endregion
+
     public void ToggleMusic()
     {
         isMusicOn = !isMusicOn;

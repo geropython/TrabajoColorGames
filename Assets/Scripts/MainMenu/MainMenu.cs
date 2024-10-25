@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private CanvasGroup _fadeOutCanvasGroup; // Para controlar la opacidad de la intro
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private GameObject _fadeOutPanel;
     [SerializeField] private Animator Etapa3ButtonAnimator;
     [SerializeField] private Animator Etapa4ButtonAnimator;
     [SerializeField] private Animator Etapa5ButtonAnimator;
+    #endregion
 
     private void Start()
     {
-
+        _fadeOutCanvasGroup.alpha = 1;
         // Nos aseguramos de que los audios no se reproduzcan al inicio
         _musicAudioSource.Stop();
 
@@ -23,6 +25,21 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(ShowMenuAfterIntro());
     }
 
+    public void OnResetProgress()
+    {
+        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        if (progress != null)
+        {
+            progress.ResetProgress();
+            Debug.Log("Progreso reiniciado.");
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró SceneProgress en la escena.");
+        }
+    }
+
+    #region Fade
     IEnumerator ShowMenuAfterIntro()
     {
         // Esperar 3 segundos
@@ -52,7 +69,9 @@ public class MainMenu : MonoBehaviour
         canvasGroup.alpha = 0;
 
     }
+    #endregion
     
+    #region Animations
     IEnumerator PlayButtonAnimationAndLoadScene(Animator buttonAnimator, string sceneName)
     {
         buttonAnimator.ResetTrigger("Click"); // Asegurarse de que no hay triggers previos
@@ -78,6 +97,7 @@ public class MainMenu : MonoBehaviour
         // Iniciar la corrutina para el botón de nivel 2 solo cuando el usuario haga clic
         StartCoroutine(PlayButtonAnimationAndLoadScene(Etapa5ButtonAnimator, "5Menu"));
     }
+    #endregion
 
     public void Quit()
     {

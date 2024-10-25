@@ -76,8 +76,21 @@ public class Etapa5Script : MonoBehaviour
             musicSource.Pause();
         }
     }
+    public void ResetProgress()
+    {
+        SceneProgress progress = FindObjectOfType<SceneProgress>();
+        if (progress != null)
+        {
+            progress.ResetProgress(); // Llama al método para reiniciar el progreso
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró SceneProgress en la escena.");
+        }
+    }
     public void BackMenu()
     {
+        ResetProgress();
         musicSource.Stop(); 
         SceneManager.LoadScene("MainMenu"); 
     }
