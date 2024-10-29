@@ -1732,7 +1732,7 @@ MonoBehaviour:
   speed: 1000
   moveDistance: 50
   correctAnswers: 0
-  _limite: 15
+  _limite: 22
   currentColor: 
   fadePanelCanvasGroup: {fileID: 2058989796}
   fadeDuration: 1

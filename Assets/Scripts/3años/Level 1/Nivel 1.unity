@@ -1594,6 +1594,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5980108528227525882, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980108528227525882, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6080220085404415705, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: letraText
       value: 

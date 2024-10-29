@@ -912,7 +912,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1778518274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Diploma3Script, Assembly-CSharp
         m_MethodName: DownloadDiploma
         m_Mode: 1
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1778518274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Diploma3Script, Assembly-CSharp
         m_MethodName: ShareDiploma
         m_Mode: 1
@@ -3231,7 +3231,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1778518274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Diploma3Script, Assembly-CSharp
         m_MethodName: DiplomaOpen
         m_Mode: 1
@@ -8607,7 +8607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1778518270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8678,10 +8678,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778518269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38680a5eb4416c4e994061947c9e636, type: 3}
+  m_Script: {fileID: 11500000, guid: 816b2849ef805f444ad00277363c38e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diploma: {fileID: 1778518269}
+  _diploma: {fileID: 1427510111}
 --- !u!1 &1802728426
 GameObject:
   m_ObjectHideFlags: 0
@@ -9036,7 +9036,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1778518274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Diploma3Script, Assembly-CSharp
         m_MethodName: DiplomaClose
         m_Mode: 1

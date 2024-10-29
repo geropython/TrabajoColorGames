@@ -38,6 +38,7 @@ public class Level3Manager : MonoBehaviour
 
     void Start()
     {
+        musicSource.Stop();
         // Actualiza el contador de oleadas en pantalla al iniciar el juego
         ActualizarContadorOleadas();
         
