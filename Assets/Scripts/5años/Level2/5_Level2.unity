@@ -5128,6 +5128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diploma: {fileID: 2131759383}
+  diplomaRectTransform: {fileID: 932130388}
 --- !u!114 &2131759386
 MonoBehaviour:
   m_ObjectHideFlags: 0

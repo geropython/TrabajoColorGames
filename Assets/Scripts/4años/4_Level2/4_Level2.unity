@@ -1991,6 +1991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diploma: {fileID: 273306947}
+  diplomaRectTransform: {fileID: 428872349}
 --- !u!1 &277380874
 GameObject:
   m_ObjectHideFlags: 0

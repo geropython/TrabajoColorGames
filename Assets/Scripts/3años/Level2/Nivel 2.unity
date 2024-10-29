@@ -8548,6 +8548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diploma: {fileID: 1778518269}
+  diplomaRectTransform: {fileID: 1427510112}
 --- !u!1 &1802728426
 GameObject:
   m_ObjectHideFlags: 0
