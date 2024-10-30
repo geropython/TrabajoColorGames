@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Words1Script : MonoBehaviour
 {
-    #region  Variables
+    #region Variables
     [SerializeField] private List<string> words;
     [SerializeField] private List<Sprite> images;
 
@@ -38,6 +38,9 @@ public class Words1Script : MonoBehaviour
 
     [SerializeField] private AudioSource musicSource; 
     private bool isMusicOn = true;
+
+    private List<string> availableWords;
+    private List<Sprite> availableImages;
     #endregion
     
     #region Start/Update
@@ -45,7 +48,11 @@ public class Words1Script : MonoBehaviour
     {
         record = PlayerPrefs.GetInt("Record", 0);
         StartFade();
-        // Iniciar el juego
+
+        // Copiar las listas originales de palabras e imágenes para no modificarlas
+        availableWords = new List<string>(words);
+        availableImages = new List<Sprite>(images);
+
         endPanel.SetActive(false);
         StartRound();
     }
@@ -59,71 +66,69 @@ public class Words1Script : MonoBehaviour
 
     private IEnumerator FadePanel()
     {
-        fadePanelCanvasGroup.alpha = 1; // Comienza con el panel de fade completamente negro
+        fadePanelCanvasGroup.alpha = 1;
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration)); // Disminuir el alpha
+            fadePanelCanvasGroup.alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
             yield return null;
         }
 
-        fadePanelCanvasGroup.alpha = 0; // Asegurarse de que el alpha esté en 0
-        fadePanelCanvasGroup.gameObject.SetActive(false); // Desactivar el fadePanel
+        fadePanelCanvasGroup.alpha = 0;
+        fadePanelCanvasGroup.gameObject.SetActive(false);
     }
     #endregion
 
     #region Letter
     void StartRound()
     {
-        // Verifica si se han completado las 5 rondas
         if (currentRound >= 5)
         {
             EndGame();
             return;
         }
 
-        // Seleccionar una palabra aleatoria
-        int randomIndex = Random.Range(0, words.Count);
-        currentWord = words[randomIndex]; // Guardar la palabra actual
-        revealedLetters = 1; // Reiniciar las letras reveladas
+        int randomIndex = Random.Range(0, availableWords.Count);
+        currentWord = availableWords[randomIndex];
+        revealedLetters = 1;
 
-        // Mostrar la imagen
-        imageDisplay.sprite = images[randomIndex];
-        inputField.text = ""; // Limpiar el InputField
+        imageDisplay.sprite = availableImages[randomIndex];
+        inputField.text = "";
 
-        // Mostrar solo la primera letra de la palabra en el nuevo texto
         palabraDisplay.text = GetRevealedWord();
 
-        // Iniciar el coroutine para revelar letras
         if (revealCoroutine != null)
         {
             StopCoroutine(revealCoroutine);
         }
         revealCoroutine = StartCoroutine(RevealLetterCoroutine());
 
-        // Actualizar la ronda actual
-        rondaActual.text = $"Ronda: {currentRound + 1} / 5"; // Mostrar la ronda actual y el total de rondas
+        rondaActual.text = $"Ronda: {currentRound + 1} / 5";
+
+        // Eliminar la palabra y la imagen ya usadas
+        availableWords.RemoveAt(randomIndex);
+        availableImages.RemoveAt(randomIndex);
+
+        currentRound++;
     }
 
-    // Coroutine que revela una letra cada 15 segundos
     private IEnumerator RevealLetterCoroutine()
     {
         while (revealedLetters < currentWord.Length)
         {
-            yield return new WaitForSeconds(15); // Esperar 15 segundos
-            revealedLetters++; // Incrementar el número de letras reveladas
-            palabraDisplay.text = GetRevealedWord(); // Actualizar el texto con las letras reveladas
+            yield return new WaitForSeconds(15);
+            revealedLetters++;
+            palabraDisplay.text = GetRevealedWord();
         }
     }
 
-    // Método que genera la palabra parcialmente revelada
     private string GetRevealedWord()
     {
         string revealedWord = currentWord.Substring(0, revealedLetters);
         int remainingLetters = currentWord.Length - revealedLetters;
-        revealedWord += new string('_', remainingLetters); // Rellenar con guiones bajos las letras que faltan
+        revealedWord += new string('_', remainingLetters);
         return revealedWord;
     }
     #endregion
@@ -131,69 +136,58 @@ public class Words1Script : MonoBehaviour
     #region Checking
     public void CheckAnswer()
     {
-        string playerInput = inputField.text.Trim(); // Eliminar espacios adicionales
+        string playerInput = inputField.text.Trim();
         Debug.Log("Respuesta ingresada: " + playerInput);
         Debug.Log("Palabra correcta: " + currentWord);
 
-        // Verificar si el campo está vacío
         if (string.IsNullOrEmpty(playerInput))
         {
             Debug.Log("El campo de entrada está vacío. No se puede avanzar.");
-            return; // No avanzar la ronda si no hay input
+            return;
         }
 
-        // Verificar si la respuesta es correcta
         if (playerInput.Equals(currentWord, System.StringComparison.OrdinalIgnoreCase))
         {
             score += 10;
             correctFeedback.SetActive(true);
             StartCoroutine(FeedbackCoroutine());
-            
-            // Avanzar la ronda solo si la respuesta es correcta
-            currentRound++;
+
             scoreText.text = "Puntos: " + score;
         }
-        else//Respuesta incorrecta
+        else
         {
             score -= 5;
-            mistakes++; // Incrementar el conteo de errores
+            mistakes++;
             scoreText.text = "Puntos: " + score;
         }
-        
     }
     #endregion
 
     private IEnumerator FeedbackCoroutine()
     {
-        yield return new WaitForSeconds(1); // Esperar 2 segundos
-        correctFeedback.SetActive(false); // Desactivar el feedback correcto
-        StartRound(); // Iniciar la siguiente ronda
+        yield return new WaitForSeconds(1);
+        correctFeedback.SetActive(false);
+        StartRound();
     }
     #region EndGame
     void EndGame()
     {
-        // Detener el revealCoroutine cuando termine el juego
         if (revealCoroutine != null)
         {
             StopCoroutine(revealCoroutine);
         }
 
-        // Actualizar récord si es necesario
         if (score > record)
         {
             record = score;
-            PlayerPrefs.SetInt("Record", record); // Guardar el récord
+            PlayerPrefs.SetInt("Record", record);
         }
 
-        // Mostrar el panel final
         endPanel.SetActive(true);
-
-        // Asignar la puntuación final, errores y récord en los textos correspondientes
         endPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Puntuación Final: " + score;
-        errorsText.text = "Errores: " + mistakes; // Mostrar los errores
-        recordText.text = "Récord: " + record;   // Mostrar el récord
+        errorsText.text = "Errores: " + mistakes;
+        recordText.text = "Récord: " + record;
     }
-
 
     public void BackMenu() { SceneManager.LoadScene("5Menu"); }
     public void ToggleMusic()

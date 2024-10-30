@@ -3110,8 +3110,8 @@ GameObject:
   - component: {fileID: 1822238458}
   - component: {fileID: 1822238457}
   - component: {fileID: 1822238461}
-  - component: {fileID: 1822238463}
   - component: {fileID: 1822238465}
+  - component: {fileID: 1822238463}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3853,7 +3853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2016857059
 MonoBehaviour:
   m_ObjectHideFlags: 0

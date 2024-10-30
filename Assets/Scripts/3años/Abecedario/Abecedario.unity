@@ -823,10 +823,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 140832753674474405, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 200154784170864443, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 305682335725629945, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: bbfcdfa8f31b7114bb4ffc6a2d4fac28, type: 3}
+    - target: {fileID: 429996695942642470, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471277844131478756, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 490183661639178295, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -859,6 +875,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 1058210839088180947, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1100771865231472601, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -875,6 +895,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: de007171a27baff4886e925b7f081824, type: 3}
+    - target: {fileID: 1449200672765295141, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1474682956483209184, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -886,6 +910,14 @@ PrefabInstance:
     - target: {fileID: 1611718386585535919, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669934578018844389, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669934578018844389, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1790865819186908957, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -907,6 +939,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 73bea5cbeaf5fcb48974f6d7432679ae, type: 3}
+    - target: {fileID: 2157654998749356769, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160900000418357285, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256599261186102496, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580079808837383619, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2813297299224141294, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
@@ -942,6 +990,14 @@ PrefabInstance:
     - target: {fileID: 3236536614869967509, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269659880151607303, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296741025527441898, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3329881557001836822, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -995,6 +1051,10 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5074030400917355181, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5086412008778171808, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -1003,9 +1063,29 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 0b4aaeef37f61664ea6b30db0cfe8106, type: 3}
+    - target: {fileID: 6032762916355468110, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059214103400980787, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6238422251663690216, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300522014767791948, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467813857270438521, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602888383022554364, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6729630704077988943, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1014,6 +1094,14 @@ PrefabInstance:
     - target: {fileID: 6998487949096529058, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128383816684032971, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142119105801039366, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7214140946583268806, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1046,6 +1134,10 @@ PrefabInstance:
     - target: {fileID: 7621398214842566904, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816387526313509206, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865837662698985786, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: m_Pivot.x
@@ -1135,6 +1227,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 1760a79fcd6143e43a5349ea0dba7e8a, type: 3}
+    - target: {fileID: 8013119146344235167, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014464093013944659, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8038009742471549256, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -1159,6 +1259,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 875c52ff9aaf89842a9e9a6381718777, type: 3}
+    - target: {fileID: 8379258364002539548, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8693101259537144381, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -1166,6 +1270,14 @@ PrefabInstance:
     - target: {fileID: 8732218940836529114, guid: fc708fb60f270a4488246a666724981b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959181862274928776, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136352104035620129, guid: fc708fb60f270a4488246a666724981b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

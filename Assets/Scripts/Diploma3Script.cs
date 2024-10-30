@@ -6,10 +6,12 @@ using System.IO;
 public class Diploma3Script : MonoBehaviour
 {
     [SerializeField] private GameObject _diploma;
+    [SerializeField] private RectTransform diplomaRectTransform; // Agregar el RectTransform del diploma
     private string _filePath;
 
     private void Start()
-    {   // Cargar la imagen del diploma desde Resources y guardarla temporalmente
+    {
+        // Cargar la imagen del diploma desde Resources y guardarla temporalmente
         Texture2D diplomaTexture = Resources.Load<Texture2D>("Diploma3");
         if (diplomaTexture != null)
         {
@@ -37,40 +39,38 @@ public class Diploma3Script : MonoBehaviour
 
     public void ShareDiploma()
     {
-        if (!string.IsNullOrEmpty(_filePath) && File.Exists(_filePath))
-        {
-            // Compartir la imagen usando NativeShare
-            new NativeShare()
-                .AddFile(_filePath)
-                .SetText("¡He conseguido un diploma!")
-                .SetSubject("Mira mi logro")
-                .Share();
-        }
-        else
-        {
-            Debug.LogError("El archivo de la imagen del diploma no se encontró.");
-        }
+        StartCoroutine(CaptureDiploma());
     }
 
-    public void DownloadDiploma()
+    private IEnumerator CaptureDiploma()
     {
-        string downloadPath;
-        #if UNITY_ANDROID
-            // Ruta pública de descargas en Android
-            downloadPath = Path.Combine("/storage/emulated/0/Download", "Diploma3.png");
-        #else
-            //Ruta de descarga en otras plataformas (ej., iOS)
-            downloadPath = Path.Combine(Application.persistentDataPath, "Diploma3.png");
-        #endif
+        yield return new WaitForEndOfFrame();
 
-        if (!string.IsNullOrEmpty(_filePath) && File.Exists(_filePath))
-        {
-            File.Copy(_filePath, downloadPath, true);
-            Debug.Log("Diploma descargado en: " + downloadPath);
-        }
-        else
-        {
-            Debug.LogError("No se pudo descargar la imagen del diploma.");
-        }
+        // Obtener las dimensiones y posición del diploma en píxeles
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, diplomaRectTransform.position);
+        int width = (int)diplomaRectTransform.rect.width;
+        int height = (int)diplomaRectTransform.rect.height;
+        int x = (int)(screenPoint.x - width / 2);
+        int y = (int)(screenPoint.y - height / 2);
+
+        // Capturar solo el área del diploma
+        Texture2D screenTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
+        screenTexture.ReadPixels(new Rect(x, y, width, height), 0, 0);
+        screenTexture.Apply();
+
+        // Guardar la imagen temporalmente
+        _filePath = Path.Combine(Application.temporaryCachePath, "Diploma3_Captured.png");
+        File.WriteAllBytes(_filePath, screenTexture.EncodeToPNG());
+        Debug.Log("Captura del diploma guardada temporalmente en: " + _filePath);
+
+        // Compartir la imagen usando NativeShare
+        new NativeShare()
+            .AddFile(_filePath)
+            .SetText("¡He conseguido un diploma!")
+            .SetSubject("Mira mi logro")
+            .Share();
+
+        // Limpiar la textura
+        Destroy(screenTexture);
     }
 }
