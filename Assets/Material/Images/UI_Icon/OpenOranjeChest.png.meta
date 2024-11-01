@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 84bd6d3567eb479489df4d309b185eec
+guid: 83fba64c7d045734ca4bd7fa6fe6c5f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1095087298790761112
-    second: DownloadNaranja_0
+      213: 4060280284703761938
+    second: OpenOranjeChest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DownloadNaranja_0
+      name: OpenOranjeChest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 775
-        height: 775
+        width: 581
+        height: 489
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86dd88d57e77dc0f0800000000000000
-      internalID: -1095087298790761112
+      spriteID: 2162a4a1863095830800000000000000
+      internalID: 4060280284703761938
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DownloadNaranja_0: -1095087298790761112
+      OpenOranjeChest_0: 4060280284703761938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

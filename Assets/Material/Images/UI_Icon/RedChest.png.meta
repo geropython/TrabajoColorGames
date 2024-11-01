@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 784efb1c37b1af045ad494850e9d3e98
+guid: b59619915457fb4458b9560718fc2118
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7665111558628189656
-    second: DownloadRed_0
+      213: -3276030391354552141
+    second: RedChest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DownloadRed_0
+      name: RedChest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 775
-        height: 775
+        width: 581
+        height: 438
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d526cfd952ff5a60800000000000000
-      internalID: 7665111558628189656
+      spriteID: 3b09de957b33982d0800000000000000
+      internalID: -3276030391354552141
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DownloadRed_0: 7665111558628189656
+      RedChest_0: -3276030391354552141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

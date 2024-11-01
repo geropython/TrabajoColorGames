@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 41144155e17ea0d4a8948e3905378ccc
+guid: 18cfb9e0d5f250946a5abffd2e9267cd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5172496806870998002
-    second: DownloadBlue_0
+      213: 4618404593107148086
+    second: OrangeChest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DownloadBlue_0
+      name: OrangeChest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 775
-        height: 775
+        width: 581
+        height: 438
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fb5367d07668c740800000000000000
-      internalID: 5172496806870998002
+      spriteID: 63d1f21128ed71040800000000000000
+      internalID: 4618404593107148086
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DownloadBlue_0: 5172496806870998002
+      OrangeChest_0: 4618404593107148086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
