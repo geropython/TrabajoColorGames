@@ -736,6 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diplomaScript: {fileID: 2131759385}
   _diplomaPanel: {fileID: 2131759383}
+  _diplomaAnimator: {fileID: 932130391}
 --- !u!1 &366012443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,6 +2078,7 @@ GameObject:
   - component: {fileID: 932130388}
   - component: {fileID: 932130390}
   - component: {fileID: 932130389}
+  - component: {fileID: 932130391}
   m_Layer: 5
   m_Name: Diploma
   m_TagString: Untagged
@@ -2100,7 +2102,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -658}
+  m_AnchoredPosition: {x: -772, y: -658}
   m_SizeDelta: {x: 1000, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &932130389
@@ -2141,6 +2143,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932130387}
   m_CullTransparentMesh: 1
+--- !u!95 &932130391
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932130387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2757cea44451d964b95aedc63558f134, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1018599734
 GameObject:
   m_ObjectHideFlags: 0
