@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Diploma4Scripts : MonoBehaviour
+public class Diploma5Script : MonoBehaviour
 {
-    #region Variables
+     #region Variables
     [SerializeField] private RectTransform diplomaRectTransform;
     [SerializeField] private Animator OpenChestButtonAnimator;
     [SerializeField] private AudioSource sound;
@@ -22,7 +22,7 @@ public class Diploma4Scripts : MonoBehaviour
     public void ShareDiploma()
     {
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
-        _filePath = Path.Combine(Application.temporaryCachePath, "Diploma4_Captured.png");
+        _filePath = Path.Combine(Application.temporaryCachePath, "Diploma5_Captured.png");
 
         try
         {

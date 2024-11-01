@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OpenChestAnim
+  m_Name: OpenChest4
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +23,7 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: 95148bf335f3cba499bee437c9653a85, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: 57802d3d5493c734e822175835b866f4, type: 3}
+      value: {fileID: 21300000, guid: e7dc1707c477848408b64f308981b4e5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -47,7 +47,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 21300000, guid: 95148bf335f3cba499bee437c9653a85, type: 3}
-    - {fileID: 21300000, guid: 57802d3d5493c734e822175835b866f4, type: 3}
+    - {fileID: 21300000, guid: e7dc1707c477848408b64f308981b4e5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

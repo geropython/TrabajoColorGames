@@ -1,6 +1,5 @@
-using System.Collections;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class Diploma3Script : MonoBehaviour
 {
@@ -13,28 +12,13 @@ public class Diploma3Script : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        StartCoroutine(HandleButtonClick());   
-    }
-    private IEnumerator HandleButtonClick()
-    {
         OpenChestButtonAnimator.SetTrigger("Click");
         sound.Play();
-
-        float animationDuration = 1.0f;
-        yield return new WaitForSeconds(animationDuration);
     }
-
+    
     #region Diploma
-
     public void ShareDiploma()
     {
-        StartCoroutine(CaptureDiploma());
-    }
-
-    private IEnumerator CaptureDiploma()
-    {
-        yield return new WaitForEndOfFrame();
-
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
         _filePath = Path.Combine(Application.temporaryCachePath, "Diploma3_Captured.png");
 
