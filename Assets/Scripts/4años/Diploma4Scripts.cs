@@ -6,6 +6,7 @@ using System.IO;
 public class Diploma4Scripts : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private GameObject _diplomaPanel;
     [SerializeField] private RectTransform diplomaRectTransform;
     [SerializeField] private Animator OpenChestButtonAnimator;
     [SerializeField] private AudioSource sound;
@@ -19,6 +20,10 @@ public class Diploma4Scripts : MonoBehaviour
     }
     
     #region Diploma
+    public void CloseDiploma()
+    {
+        _diplomaPanel.SetActive(false);
+    }
     public void ShareDiploma()
     {
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();

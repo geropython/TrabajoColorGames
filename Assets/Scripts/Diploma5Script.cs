@@ -5,7 +5,8 @@ using System.IO;
 
 public class Diploma5Script : MonoBehaviour
 {
-     #region Variables
+    #region Variables
+    [SerializeField] private GameObject _diplomaPanel;
     [SerializeField] private RectTransform diplomaRectTransform;
     [SerializeField] private Animator OpenChestButtonAnimator;
     [SerializeField] private AudioSource sound;
@@ -41,6 +42,10 @@ public class Diploma5Script : MonoBehaviour
             .Share();
 
         Destroy(screenTexture);
+    }
+    public void CloseDiploma()
+    {
+        _diplomaPanel.SetActive(false);
     }
     #endregion
 }

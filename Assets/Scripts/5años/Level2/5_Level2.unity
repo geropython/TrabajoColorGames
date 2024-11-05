@@ -3611,7 +3611,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2131759385}
         m_TargetAssemblyTypeName: Diploma5Script, Assembly-CSharp
-        m_MethodName: DiplomaClose
+        m_MethodName: CloseDiploma
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5150,6 +5150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272afe60ee81e944aa114517d8a7df04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _diplomaPanel: {fileID: 0}
   diplomaRectTransform: {fileID: 2131759384}
   OpenChestButtonAnimator: {fileID: 292670047}
   sound: {fileID: 292670046}

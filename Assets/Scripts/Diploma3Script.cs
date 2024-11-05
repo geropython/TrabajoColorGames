@@ -4,6 +4,7 @@ using UnityEngine;
 public class Diploma3Script : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private GameObject _diplomaPanel;
     [SerializeField] private RectTransform diplomaRectTransform;
     [SerializeField] private Animator OpenChestButtonAnimator;
     [SerializeField] private AudioSource sound;
@@ -39,6 +40,10 @@ public class Diploma3Script : MonoBehaviour
             .Share();
 
         Destroy(screenTexture);
+    }
+    public void CloseDiploma()
+    {
+        _diplomaPanel.SetActive(false);
     }
     #endregion
 }
