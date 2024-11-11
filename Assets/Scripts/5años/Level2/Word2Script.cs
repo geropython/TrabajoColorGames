@@ -38,6 +38,8 @@ public class Word2Script : MonoBehaviour
     private string palabraActual;
     private bool juegoTerminado = false;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource incorrectSound;
     private bool isMusicOn = true;
     private List<string> letrasDisponibles = new List<string>();
     private List<string> letrasSeleccionadas = new List<string>();
@@ -202,6 +204,7 @@ public class Word2Script : MonoBehaviour
         if (palabraFormada.Equals(palabraActual))
         {
             puntos += 10;
+            correctSound.Play();
             puntosTexto.text = "Puntos: " + puntos;
 
             rondaActual++; // Avanzar a la siguiente ronda
@@ -214,6 +217,7 @@ public class Word2Script : MonoBehaviour
         else
         {
             Debug.Log("Palabra incorrecta.");
+            incorrectSound.Play();
 
             // Restablecer letras seleccionadas y disponibles
             RestablecerLetras();

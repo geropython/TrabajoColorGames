@@ -2126,7 +2126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610c5911622499441ae416a22f8f53f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diplomaPanel: {fileID: 0}
+  _diplomaPanel: {fileID: 273306947}
   diplomaRectTransform: {fileID: 273306948}
   OpenChestButtonAnimator: {fileID: 1990980228}
   sound: {fileID: 1990980230}
