@@ -165,8 +165,8 @@ public class Level2Manager : MonoBehaviour
 
         if (textosPanel.Length >= 2)
         {
-            textosPanel[0].text = "Puntaje: " + puntajeTotal.ToString();
-            textosPanel[1].text = "Errores: " + errores.ToString();
+            textosPanel[1].text = "Puntaje: " + puntajeTotal.ToString();
+            textosPanel[2].text = "Errores: " + errores.ToString();
         }
         else
         {

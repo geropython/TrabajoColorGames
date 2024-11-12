@@ -6071,6 +6071,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337230216}
   m_CullTransparentMesh: 1
+--- !u!1 &1388806405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3825693937403398123, guid: 043997e5bf4019c4aa655e5d57e8770d, type: 3}
+  m_PrefabInstance: {fileID: 8593530733564070100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1409090668
 GameObject:
   m_ObjectHideFlags: 0
@@ -10688,6 +10693,10 @@ PrefabInstance:
       propertyPath: totalOleadas
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 210499632499396115, guid: 043997e5bf4019c4aa655e5d57e8770d, type: 3}
+      propertyPath: _objetoPoints
+      value: 
+      objectReference: {fileID: 1388806405}
     - target: {fileID: 210499632499396115, guid: 043997e5bf4019c4aa655e5d57e8770d, type: 3}
       propertyPath: fadeCanvasGroup
       value: 
