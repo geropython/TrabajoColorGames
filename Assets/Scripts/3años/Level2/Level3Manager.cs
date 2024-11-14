@@ -13,7 +13,7 @@ public class Level3Manager : MonoBehaviour
     public Button[] botones;
     [SerializeField] private GameObject _objetoPoints;
     [SerializeField] private GameObject _panelPuntaje;
-    
+
     public int totalOleadas = 10; // Total de oleadas
     private int oleadaActual = 1; // Oleada actual
     public TextMeshProUGUI contadorOleadasText;
@@ -21,14 +21,14 @@ public class Level3Manager : MonoBehaviour
     private int puntajeTotal = 0;
     private int errores = 0;  // Contador de errores
     private char letraCorrecta;
-    
+
     [SerializeField] private CanvasGroup fadePanelCanvasGroup; // CanvasGroup del fadePanel
     [SerializeField] private GameObject mainPanel; // Panel principal que se mostrará después del fade
     [SerializeField] private float fadeDuration = 1f;
 
-    [SerializeField]private GameObject soundObject; 
-    [SerializeField]private AudioClip correctSound;
-    [SerializeField]private AudioClip incorrectSound;
+    [SerializeField] private GameObject soundObject; 
+    [SerializeField] private AudioClip correctSound;
+    [SerializeField] private AudioClip incorrectSound;
     public AudioSource musicSource; 
     public AudioSource audioSource;
     private bool isMusicOn = true;
@@ -38,27 +38,37 @@ public class Level3Manager : MonoBehaviour
 
     void Start()
     {
+        ResetLevel();
         musicSource.Stop();
-        // Actualiza el contador de oleadas en pantalla al iniciar el juego
-        ActualizarContadorOleadas();
         
         // Inicialmente desactivar el mainPanel
         mainPanel.SetActive(false);
+        
         // Iniciar el juego con un fade
         IniciarJuegoConFade();
+
+        // Obtener el componente AudioSource del objeto de sonido
+        audioSource = soundObject.GetComponent<AudioSource>();
         
-        _panelPuntaje.SetActive(false);
+        AsignarLetrasABotones();
+    }
+
+    void ResetLevel()
+    {
+        _panelPuntaje.SetActive(false); // Asegurarse de que el panel de puntaje esté desactivado
+        puntajeTotal = 0;
+        errores = 0;
+        oleadaActual = 1;
+        ActualizarContadorOleadas();
 
         // Inicializa la lista de letras de la A a la Z
+        letrasDisponibles.Clear();
         for (char c = 'A'; c <= 'Z'; c++)
         {
             letrasDisponibles.Add(c);
         }
-        // Obtener el componente AudioSource del objeto de sonido
-        audioSource = soundObject.GetComponent<AudioSource>();
-
-        AsignarLetrasABotones();
     }
+
     void ActualizarContadorOleadas()
     {
         // Actualiza el texto en pantalla con el formato "Oleada Actual / Total de Oleadas"
@@ -66,7 +76,7 @@ public class Level3Manager : MonoBehaviour
     }
 
     #region Fade Coroutines
-   void IniciarJuegoConFade()
+    void IniciarJuegoConFade()
     {
         StartCoroutine(FadeInGamePanel());
     }
@@ -170,8 +180,6 @@ public class Level3Manager : MonoBehaviour
         audioSource.PlayOneShot(correctSound); // Sonido de acierto
     }
 
-
-
     void BotonIncorrecto()
     {
         // Incrementar los errores cuando se selecciona una opción incorrecta
@@ -218,7 +226,12 @@ public class Level3Manager : MonoBehaviour
     }
 
     public void BackMenu(){ SceneManager.LoadScene("3Menu"); }
-    public void Replay(){ SceneManager.LoadScene("Level 2"); }
+    
+    public void Replay()
+    {
+        ResetLevel();
+        SceneManager.LoadScene("Level 2");
+    }
 
     public void ToggleMusic()
     {

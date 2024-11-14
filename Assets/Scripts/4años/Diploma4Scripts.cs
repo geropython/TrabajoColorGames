@@ -15,7 +15,12 @@ public class Diploma4Scripts : MonoBehaviour
 
     public void OnButtonClicked()
     {
+        // Reinicia el Animator para que la animación de apertura se reproduzca de nuevo
+        OpenChestButtonAnimator.ResetTrigger("Click");
         OpenChestButtonAnimator.SetTrigger("Click");
+
+        // Asegúrate de que el diplomaPanel esté activo
+        _diplomaPanel.SetActive(true);
         sound.Play();
     }
     
@@ -24,6 +29,7 @@ public class Diploma4Scripts : MonoBehaviour
     {
         _diplomaPanel.SetActive(false);
     }
+
     public void ShareDiploma()
     {
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();

@@ -48,6 +48,7 @@ public class Word2Script : MonoBehaviour
 
     private void Start()
     {
+        panelFinal.SetActive(false);
         pistaImagen.gameObject.SetActive(false); // Asegúrate de que la imagen esté oculta al inicio
         pistaButton.onClick.AddListener(MostrarPista);
 

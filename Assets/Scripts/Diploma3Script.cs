@@ -11,12 +11,19 @@ public class Diploma3Script : MonoBehaviour
     private string _filePath;
     #endregion
 
+    private void Start()
+    {
+        // Asegurarse de que el panel y la animación se reinicien al inicio
+        _diplomaPanel.SetActive(false);
+        OpenChestButtonAnimator.ResetTrigger("Click"); // Reiniciar el trigger al inicio
+    }
+
     public void OnButtonClicked()
     {
-        OpenChestButtonAnimator.SetTrigger("Click");
+        OpenChestButtonAnimator.SetTrigger("Click"); // Activar el trigger
         sound.Play();
     }
-    
+
     #region Diploma
     public void ShareDiploma()
     {
@@ -41,9 +48,12 @@ public class Diploma3Script : MonoBehaviour
 
         Destroy(screenTexture);
     }
+
     public void CloseDiploma()
     {
         _diplomaPanel.SetActive(false);
+        // Restablecer el estado del trigger al cerrar el diploma para que esté listo para la próxima vez
+        OpenChestButtonAnimator.ResetTrigger("Click");
     }
     #endregion
 }

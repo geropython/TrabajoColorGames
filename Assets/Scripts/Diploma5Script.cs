@@ -15,7 +15,11 @@ public class Diploma5Script : MonoBehaviour
 
     public void OnButtonClicked()
     {
+        // Reinicia el Animator para que la animación de apertura se reproduzca de nuevo
+        OpenChestButtonAnimator.ResetTrigger("Click");
         OpenChestButtonAnimator.SetTrigger("Click");
+
+        _diplomaPanel.SetActive(true);
         sound.Play();
     }
     

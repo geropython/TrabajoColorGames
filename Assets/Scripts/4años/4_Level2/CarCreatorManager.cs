@@ -59,6 +59,7 @@ public class CarCreatorManager : MonoBehaviour
     private bool windowTouched = false;
 
     #endregion
+
     #region Fade
     void StartFade()
     {
@@ -89,6 +90,7 @@ public class CarCreatorManager : MonoBehaviour
         UpdateWheels();
         UpdateWindows();
         GenerateRandomObjective();  // Generar un objetivo al iniciar el nivel
+        endPanel.SetActive(false); // Asegura que el panel de puntos esté cerrado al inicio
     }
 
     void InitializeCar() 
