@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class Diploma3Script : MonoBehaviour
 {
     #region Variables
@@ -11,15 +12,9 @@ public class Diploma3Script : MonoBehaviour
     private string _filePath;
     #endregion
 
-    private void Start()
-    {
-        // Asegurarse de que el panel y la animación se reinicien al inicio
-        _diplomaPanel.SetActive(false);
-        OpenChestButtonAnimator.ResetTrigger("Click"); // Reiniciar el trigger al inicio
-    }
-
     public void OnButtonClicked()
     {
+        OpenChestButtonAnimator.ResetTrigger("Click");
         OpenChestButtonAnimator.SetTrigger("Click"); // Activar el trigger
         sound.Play();
     }

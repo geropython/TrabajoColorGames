@@ -52,7 +52,7 @@ public class CarCreatorManager : MonoBehaviour
     private int score = 0;
     private int errors = 0;
     private int correctObjectives = 0;
-    private int maxCorrectObjectives = 3; // Máximo de objetivos correctos para terminar el nivel
+    private int maxCorrectObjectives = 3;
     private int previousRecord = 0;
 
     private bool wheelTouched = false;
@@ -83,8 +83,12 @@ public class CarCreatorManager : MonoBehaviour
     }
     #endregion
 
-    void Start()
+    public void Start()
     {
+        score = 0;
+        errors = 0;
+        correctObjectives = 0;
+        
         StartFade();
         InitializeCar();
         UpdateWheels();

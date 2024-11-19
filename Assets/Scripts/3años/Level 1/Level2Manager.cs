@@ -55,17 +55,35 @@ public class Level2Manager : MonoBehaviour
     public Sprite[] dibujos; // Arrastra tus imágenes aquí en el inspector
     #endregion
 
-    void Start()
+    public void Start()
     {
-        ActualizarContadorOleadas();
-        mainPanel.SetActive(false);
-        IniciarJuegoConFade();
+        // Reinicio de variables
+        puntajeTotal = 0;
+        aciertos = 0;
+        errores = 0;
+        oleadaActual = 1;
 
+        mainPanel.SetActive(false);
         _panelPuntaje.SetActive(false);
+        fadePanelCanvasGroup.alpha = 1; // Asegúrate de que el fade está en su inicio
+
+        // Reactivar y limpiar botones
+        foreach (Button boton in botones)
+        {
+            boton.interactable = true;
+            boton.onClick.RemoveAllListeners(); // Elimina listeners antiguos
+        }
+
+        // Obtener referencia del AudioSource
         audioSource = soundObject.GetComponent<AudioSource>();
 
-        AsignarLetrasABotones(); // Inicializa el juego
+        // Inicializar juego con fade y configuración inicial
+        IniciarJuegoConFade();
+        AsignarLetrasABotones();
+        ActualizarContadorOleadas();
     }
+
+
 
     void ActualizarContadorOleadas()
     {
@@ -235,7 +253,16 @@ public class Level2Manager : MonoBehaviour
     #region Extra
     public void BackMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        _panelPuntaje.SetActive(false);
+        SceneManager.LoadScene("3Menu");
+    }
+    public void RestartLevel()
+    {
+        // Reinicia variables persistentes antes de recargar
+        puntajeTotal = 0;
+        aciertos = 0;
+        errores = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ToggleMusic()

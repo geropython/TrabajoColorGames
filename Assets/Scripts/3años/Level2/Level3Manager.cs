@@ -36,11 +36,25 @@ public class Level3Manager : MonoBehaviour
 
     #endregion
 
-    void Start()
+    public void Start()
     {
-        ResetLevel();
+        _panelPuntaje.SetActive(false);
+        puntajeTotal = 0; 
+        errores = 0;
+        oleadaActual = 1;
+        ActualizarContadorOleadas();
         musicSource.Stop();
-        
+        // Restaurar interactividad de los botones
+        foreach (Button boton in botones)
+        {
+            boton.interactable = true;
+        }
+        // Reiniciar las letras disponibles
+        letrasDisponibles.Clear();
+        for (char c = 'A'; c <= 'Z'; c++)
+        {
+            letrasDisponibles.Add(c);
+        }
         // Inicialmente desactivar el mainPanel
         mainPanel.SetActive(false);
         
@@ -51,22 +65,6 @@ public class Level3Manager : MonoBehaviour
         audioSource = soundObject.GetComponent<AudioSource>();
         
         AsignarLetrasABotones();
-    }
-
-    void ResetLevel()
-    {
-        _panelPuntaje.SetActive(false); // Asegurarse de que el panel de puntaje esté desactivado
-        puntajeTotal = 0;
-        errores = 0;
-        oleadaActual = 1;
-        ActualizarContadorOleadas();
-
-        // Inicializa la lista de letras de la A a la Z
-        letrasDisponibles.Clear();
-        for (char c = 'A'; c <= 'Z'; c++)
-        {
-            letrasDisponibles.Add(c);
-        }
     }
 
     void ActualizarContadorOleadas()
@@ -202,13 +200,8 @@ public class Level3Manager : MonoBehaviour
 
     private IEnumerator MostrarObjetoTemporalmente(GameObject objeto, float duracion)
     {
-        // Activar el objeto
         objeto.SetActive(true);
-
-        // Esperar por el tiempo definido
         yield return new WaitForSeconds(duracion);
-
-        // Desactivar el objeto
         objeto.SetActive(false);
     }
 
@@ -226,12 +219,6 @@ public class Level3Manager : MonoBehaviour
     }
 
     public void BackMenu(){ SceneManager.LoadScene("3Menu"); }
-    
-    public void Replay()
-    {
-        ResetLevel();
-        SceneManager.LoadScene("Level 2");
-    }
 
     public void ToggleMusic()
     {

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationEventHelper : MonoBehaviour
@@ -17,7 +19,7 @@ public class AnimationEventHelper : MonoBehaviour
             Debug.LogWarning("Diploma3Script no asignado en AnimationEventHelper.");
         }
     }
-    public void OpenPanel()
+    private void OpenPanel()
     {
         _diplomaPanel.SetActive(true); // Activa el panel
         if (_diplomaAnimator != null)

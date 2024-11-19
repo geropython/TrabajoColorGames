@@ -46,17 +46,22 @@ public class Word2Script : MonoBehaviour
 
     #endregion
 
-    private void Start()
+    public void Start()
     {
+        // Asegúrate de que el panel final y el cofre no estén activos al reiniciar el nivel
         panelFinal.SetActive(false);
+
+        // Resetear la ronda y los puntos al iniciar el nivel
+        rondaActual = 0;
+        puntos = 0;
+        tiempoRonda = 0f;
+        tiempoTotal = 0f;
+        juegoTerminado = false;
+        
+        feedbackObject.SetActive(false);
         pistaImagen.gameObject.SetActive(false); // Asegúrate de que la imagen esté oculta al inicio
         pistaButton.onClick.AddListener(MostrarPista);
-
         StartFade();
-
-        panelFinal.SetActive(false);
-        feedbackObject.SetActive(false); // Asegúrate de que el feedbackObject esté desactivado al inicio
-
         IniciarRonda();
     }
 
