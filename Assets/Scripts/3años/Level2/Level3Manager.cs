@@ -70,7 +70,7 @@ public class Level3Manager : MonoBehaviour
     void ActualizarContadorOleadas()
     {
         // Actualiza el texto en pantalla con el formato "Oleada Actual / Total de Oleadas"
-        contadorOleadasText.text = "Oleada: " + oleadaActual.ToString() + " / " + totalOleadas.ToString();
+        contadorOleadasText.text = oleadaActual.ToString() + " / " + totalOleadas.ToString();
     }
 
     #region Fade Coroutines

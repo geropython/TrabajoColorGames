@@ -176,8 +176,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: En este nivel deberas seleccionar la letra que corresponda con la letra
-    Grande.
+  m_text: "En este nivel deber\xE1s seleccionar la letra que corresponda con la letra
+    grande."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9731f81deabcbac48ad0291e4b99d6f6, type: 2}
   m_sharedMaterial: {fileID: -8496221316950197758, guid: 9731f81deabcbac48ad0291e4b99d6f6, type: 2}
@@ -1193,7 +1193,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 5261b022ccdd2634b96be97590921ff7, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: c0e4de9922c389b43a500753f4f3c90f, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1558,6 +1558,22 @@ PrefabInstance:
       propertyPath: m_MatchWidthOrHeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4602863790519344065, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602863790519344065, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602863790519344065, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602863790519344065, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 4923637915696417614, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1670,6 +1686,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7020464788365202458, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 276
+      objectReference: {fileID: 0}
     - target: {fileID: 7200929018314676968, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1715,6 +1735,10 @@ PrefabInstance:
       value: 1.548
       objectReference: {fileID: 0}
     - target: {fileID: 7264835393716221460, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264835393716221460, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1756,7 +1780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538286746399678010, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7550645445382991935, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1797,6 +1821,22 @@ PrefabInstance:
     - target: {fileID: 8611384101153971971, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864676376176866458, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864676376176866458, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864676376176866458, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864676376176866458, guid: 9543358c640d29840a090bbdbde2d686, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -650
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

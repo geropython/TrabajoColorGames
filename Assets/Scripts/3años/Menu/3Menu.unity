@@ -1690,8 +1690,12 @@ PrefabInstance:
       value: Nivel2_Button
       objectReference: {fileID: 0}
     - target: {fileID: 1235352621420718908, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235352621420718908, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 205.99997
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1502351956288145060, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1726,12 +1730,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3383490249928974715, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383490249928974715, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2
+      value: 352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506598791066762691, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 149
       objectReference: {fileID: 0}
     - target: {fileID: 3506598791066762691, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 348.99997
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 3550839925393751381, guid: 3983b733481e2c14ab5fafdb48f94029, type: 3}
       propertyPath: m_Sprite

@@ -68,7 +68,7 @@ public class Word2Script : MonoBehaviour
     private void Update()
     {
         testTimer += Time.deltaTime;
-        testTimerText.text = testTimer.ToString("F2") + " s";
+        testTimerText.text = testTimer.ToString("F2");
         if (!juegoTerminado)
         {
             tiempoRonda += Time.deltaTime;

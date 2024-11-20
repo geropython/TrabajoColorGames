@@ -105,7 +105,7 @@ public class Words1Script : MonoBehaviour
         }
         revealCoroutine = StartCoroutine(RevealLetterCoroutine());
 
-        rondaActual.text = $"Ronda: {currentRound + 1} / 5";
+        rondaActual.text = $"{currentRound + 1} / 5";
 
         // Eliminar la palabra y la imagen ya usadas
         availableWords.RemoveAt(randomIndex);

@@ -87,7 +87,7 @@ public class Level2Manager : MonoBehaviour
 
     void ActualizarContadorOleadas()
     {
-        contadorOleadasText.text = "Oleada: " + oleadaActual.ToString() + " / " + totalOleadas.ToString();
+        contadorOleadasText.text = oleadaActual.ToString() + " / " + totalOleadas.ToString();
     }
 
     #region Fade Coroutines
