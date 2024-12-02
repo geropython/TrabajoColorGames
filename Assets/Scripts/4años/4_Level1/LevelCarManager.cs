@@ -13,6 +13,10 @@ public class LevelCarManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI instructionText;
     [SerializeField] private Button redButton, blueButton, greenButton;
     [SerializeField] private Transform finishLine;
+    [SerializeField] private AudioSource wordAudioSource;
+    [SerializeField] private AudioClip redClip;
+    [SerializeField] private AudioClip blueClip;
+    [SerializeField] private AudioClip greenClip;
     
     [SerializeField] private GameObject correctFeedback;
     private TextMeshProUGUI scoreText;
@@ -99,6 +103,24 @@ public class LevelCarManager : MonoBehaviour
         int randomIndex = Random.Range(0, colors.Count);
         currentColor = colors[randomIndex];
         instructionText.text = currentColor;
+        // Reproduce el audio correspondiente al color actual
+        PlayColorAudio(currentColor);
+    }
+    void PlayColorAudio(string color)
+    {
+        switch (color)
+        {
+            case "rojo":
+                wordAudioSource.clip = redClip;
+                break;
+            case "azul":
+                wordAudioSource.clip = blueClip;
+                break;
+            case "verde":
+                wordAudioSource.clip = greenClip;
+                break;
+        }
+        wordAudioSource.Play();
     }
 
     void CheckColor(string selectedColor)
